@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeChat AI - Telegram Bot for NSFW Filtering</title>
+    <meta name="description"
+        content="AI-powered Telegram bot for automatic NSFW content filtering and chat moderation. Keep your groups safe with intelligent content detection.">
+    <meta name="keywords" content="telegram bot, nsfw filter, ai moderation, chat safety, content filtering">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0088cc",
+                        secondary: "#2aabee",
+                        accent: "#ff6b6b",
+                        dark: "#2c3e50",
+                        light: "#ecf0f1"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <!-- Header -->
+    <header class="bg-white shadow-lg">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-robot text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold text-dark" data-lang="en">SafeChat AI</span>
+                    <span class="text-xl font-bold text-dark hidden" data-lang="uk">SafeChat AI</span>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <!-- Language Switcher -->
+                    <div class="relative group">
+                        <button
+                            class="flex items-center space-x-2 px-3 py-2 rounded-lg border border-gray-200 hover:border-primary transition-colors">
+                            <i class="fas fa-globe text-gray-600"></i>
+                            <span class="font-medium" id="current-lang">EN</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute top-full right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <button
+                                class="w-full text-left px-4 py-2 hover:bg-gray-50 rounded-t-lg flex items-center justify-between language-switch"
+                                data-lang="en">
+                                <span>Українська</span>
+                                <i class="fas fa-check text-primary text-sm hidden" id="check-en"></i>
+                            </button>
+                            <button
+                                class="w-full text-left px-4 py-2 hover:bg-gray-50 rounded-b-lg flex items-center justify-between language-switch"
+                                data-lang="uk">
+                                <span>English</span>
+                                <i class="fas fa-check text-primary text-sm hidden" id="check-uk"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#features" class="text-dark hover:text-primary transition-colors font-medium"
+                            data-lang="en">Features</a>
+                        <a href="#features" class="text-dark hover:text-primary transition-colors font-medium hidden"
+                            data-lang="uk">Функції</a>
+
+                        <a href="#how-it-works" class="text-dark hover:text-primary transition-colors font-medium"
+                            data-lang="en">How It Works</a>
+                        <a href="#how-it-works"
+                            class="text-dark hover:text-primary transition-colors font-medium hidden" data-lang="uk">Як
+                            це працює</a>
+
+                        <a href="#pricing" class="text-dark hover:text-primary transition-colors font-medium"
+                            data-lang="en">Pricing</a>
+                        <a href="#pricing" class="text-dark hover:text-primary transition-colors font-medium hidden"
+                            data-lang="uk">Ціни</a>
+                    </div>
+                </div>
+
+                <a href="https://t.me/your_bot_username"
+                    class="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-full font-medium transition-colors"
+                    data-lang="en">
+                    Get Started
+                </a>
+                <a href="https://t.me/your_bot_username"
+                    class="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-full font-medium transition-colors hidden"
+                    data-lang="uk">
+                    Почати
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="container mx-auto px-4 py-16">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-dark mb-6" data-lang="en">
+                    AI-Powered NSFW Filter for Telegram
+                </h1>
+                <h1 class="text-4xl md:text-6xl font-bold text-dark mb-6 hidden" data-lang="uk">
+                    AI-фільтр NSFW для Telegram
+                </h1>
+
+                <p class="text-xl text-gray-600 mb-8" data-lang="en">
+                    Keep your Telegram groups safe with intelligent content moderation.
+                    Our AI automatically detects and filters inappropriate content in real-time.
+                </p>
+                <p class="text-xl text-gray-600 mb-8 hidden" data-lang="uk">
+                    Захищайте свої групи Telegram за допомогою інтелектуальної модерації контенту.
+                    Наш ШІ автоматично виявляє та фільтрує неприйнятний контент у реальному часі.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://t.me/your_bot_username"
+                        class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-full font-semibold text-lg transition-colors">
+                        <i class="fab fa-telegram-plane mr-2"></i>
+                        <span data-lang="en">Add to Telegram</span>
+                        <span data-lang="uk" class="hidden">Додати до Telegram</span>
+                    </a>
+                    <a href="#demo"
+                        class="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-colors">
+                        <span data-lang="en">See Demo</span>
+                        <span data-lang="uk" class="hidden">Демо</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="bg-white py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-dark mb-12" data-lang="en">Powerful Features</h2>
+                <h2 class="text-3xl font-bold text-center text-dark mb-12 hidden" data-lang="uk">Потужні функції</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 rounded-lg bg-light">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-brain text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-3" data-lang="en">AI Content Detection</h3>
+                        <h3 class="text-xl font-semibold text-dark mb-3 hidden" data-lang="uk">AI-детекція контенту</h3>
+                        <p class="text-gray-600" data-lang="en">Advanced machine learning algorithms detect NSFW content
+                            with 99% accuracy across images, videos, and text.</p>
+                        <p class="text-gray-600 hidden" data-lang="uk">Просунуті алгоритми машинного навчання виявляють
+                            NSFW-контент з точністю 99% у зображеннях, відео та тексті.</p>
+                    </div>
+                    <div class="text-center p-6 rounded-lg bg-light">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-3" data-lang="en">Real-time Moderation</h3>
+                        <h3 class="text-xl font-semibold text-dark mb-3 hidden" data-lang="uk">Модерація в реальному
+                            часі</h3>
+                        <p class="text-gray-600" data-lang="en">Instant content analysis and automatic removal of
+                            inappropriate material before it reaches your members.</p>
+                        <p class="text-gray-600 hidden" data-lang="uk">Миттєвий аналіз контенту та автоматичне видалення
+                            неприйнятного матеріалу до того, як він дійде до учасників.</p>
+                    </div>
+                    <div class="text-center p-6 rounded-lg bg-light">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-cogs text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-3" data-lang="en">Customizable Settings</h3>
+                        <h3 class="text-xl font-semibold text-dark mb-3 hidden" data-lang="uk">Налаштування</h3>
+                        <p class="text-gray-600" data-lang="en">Adjust sensitivity levels, set custom filters, and
+                            configure moderation rules to match your community standards.</p>
+                        <p class="text-gray-600 hidden" data-lang="uk">Налаштуйте рівні чутливості, встановлюйте власні
+                            фільтри та конфігуруйте правила модерації під стандарти вашої спільноти.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-dark mb-12" data-lang="en">How It Works</h2>
+                <h2 class="text-3xl font-bold text-center text-dark mb-12 hidden" data-lang="uk">Як це працює</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl font-bold">1</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-dark mb-2" data-lang="en">Add Bot</h3>
+                        <h3 class="text-lg font-semibold text-dark mb-2 hidden" data-lang="uk">Додати бота</h3>
+                        <p class="text-gray-600" data-lang="en">Add our bot to your Telegram group as an admin</p>
+                        <p class="text-gray-600 hidden" data-lang="uk">Додайте нашого бота до вашої групи Telegram як
+                            адміністратора</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl font-bold">2</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-dark mb-2" data-lang="en">Configure</h3>
+                        <h3 class="text-lg font-semibold text-dark mb-2 hidden" data-lang="uk">Налаштувати</h3>
+                        <p class="text-gray-600" data-lang="en">Set up your moderation preferences and rules</p>
+                        <p class="text-gray-600 hidden" data-lang="uk">Налаштуйте ваші уподобання та правила модерації
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl font-bold">3</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-dark mb-2" data-lang="en">Monitor</h3>
+                        <h3 class="text-lg font-semibold text-dark mb-2 hidden" data-lang="uk">Моніторинг</h3>
+                        <p class="text-gray-600" data-lang="en">Bot automatically scans all incoming messages</p>
+                        <p class="text-gray-600 hidden" data-lang="uk">Бот автоматично сканує всі вхідні повідомлення
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl font-bold">4</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-dark mb-2" data-lang="en">Protect</h3>
+                        <h3 class="text-lg font-semibold text-dark mb-2 hidden" data-lang="uk">Захист</h3>
+                        <p class="text-gray-600" data-lang="en">Inappropriate content is filtered instantly</p>
+                        <p class="text-gray-600 hidden" data-lang="uk">Неприйнятний контент фільтрується миттєво</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="bg-white py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-dark mb-12" data-lang="en">Simple Pricing</h2>
+                <h2 class="text-3xl font-bold text-center text-dark mb-12 hidden" data-lang="uk">Просте ціноутворення
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    <div class="border-2 border-gray-200 rounded-lg p-8 text-center">
+                        <h3 class="text-2xl font-bold text-dark mb-4" data-lang="en">Free Tier</h3>
+                        <h3 class="text-2xl font-bold text-dark mb-4 hidden" data-lang="uk">Безкоштовний</h3>
+                        <div class="text-4xl font-bold text-primary mb-6">$0</div>
+                        <ul class="space-y-3 mb-8">
+                            <li data-lang="en">✓ Basic NSFW filtering</li>
+                            <li data-lang="en">✓ Up to 100 messages/day</li>
+                            <li data-lang="en">✓ Image detection</li>
+                            <li data-lang="en">✗ Advanced features</li>
+
+                            <li class="hidden" data-lang="uk">✓ Базове фільтрування NSFW</li>
+                            <li class="hidden" data-lang="uk">✓ До 100 повідомлень/день</li>
+                            <li class="hidden" data-lang="uk">✓ Детекція зображень</li>
+                            <li class="hidden" data-lang="uk">✗ Розширені функції</li>
+                        </ul>
+                        <a href="https://t.me/your_bot_username"
+                            class="bg-gray-200 text-dark px-6 py-3 rounded-full font-medium" data-lang="en">Get
+                            Started</a>
+                        <a href="https://t.me/your_bot_username"
+                            class="bg-gray-200 text-dark px-6 py-3 rounded-full font-medium hidden"
+                            data-lang="uk">Почати</a>
+                    </div>
+                    <div class="border-2 border-primary rounded-lg p-8 text-center relative">
+                        <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 rounded-bl-lg"
+                            data-lang="en">Popular</div>
+                        <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 rounded-bl-lg hidden"
+                            data-lang="uk">Популярний</div>
+                        <h3 class="text-2xl font-bold text-dark mb-4" data-lang="en">Pro</h3>
+                        <h3 class="text-2xl font-bold text-dark mb-4 hidden" data-lang="uk">Pro</h3>
+                        <div class="text-4xl font-bold text-primary mb-6">$9.99<span class="text-lg"
+                                data-lang="en">/mo</span><span class="text-lg hidden" data-lang="uk">/міс</span></div>
+                        <ul class="space-y-3 mb-8">
+                            <li data-lang="en">✓ Advanced AI filtering</li>
+                            <li data-lang="en">✓ Unlimited messages</li>
+                            <li data-lang="en">✓ Image & video detection</li>
+                            <li data-lang="en">✓ Custom rules</li>
+
+                            <li class="hidden" data-lang="uk">✓ Розширене AI-фільтрування</li>
+                            <li class="hidden" data-lang="uk">✓ Необмежені повідомлення</li>
+                            <li class="hidden" data-lang="uk">✓ Детекція зображень та відео</li>
+                            <li class="hidden" data-lang="uk">✓ Власні правила</li>
+                        </ul>
+                        <a href="https://t.me/your_bot_username"
+                            class="bg-primary hover:bg-secondary text-white px-6 py-3 rounded-full font-medium transition-colors"
+                            data-lang="en">Get Started</a>
+                        <a href="https://t.me/your_bot_username"
+                            class="bg-primary hover:bg-secondary text-white px-6 py-3 rounded-full font-medium transition-colors hidden"
+                            data-lang="uk">Почати</a>
+                    </div>
+                    <div class="border-2 border-gray-200 rounded-lg p-8 text-center">
+                        <h3 class="text-2xl font-bold text-dark mb-4" data-lang="en">Enterprise</h3>
+                        <h3 class="text-2xl font-bold text-dark mb-4 hidden" data-lang="uk">Для бізнесу</h3>
+                        <div class="text-4xl font-bold text-primary mb-6" data-lang="en">Custom</div>
+                        <div class="text-4xl font-bold text-primary mb-6 hidden" data-lang="uk">Індивідуально</div>
+                        <ul class="space-y-3 mb-8">
+                            <li data-lang="en">✓ All Pro features</li>
+                            <li data-lang="en">✓ Multiple groups</li>
+                            <li data-lang="en">✓ Priority support</li>
+                            <li data-lang="en">✓ Custom integration</li>
+
+                            <li class="hidden" data-lang="uk">✓ Всі Pro функції</li>
+                            <li class="hidden" data-lang="uk">✓ Кілька груп</li>
+                            <li class="hidden" data-lang="uk">✓ Пріоритетна підтримка</li>
+                            <li class="hidden" data-lang="uk">✓ Індивідуальна інтеграція</li>
+                        </ul>
+                        <a href="#contact" class="bg-gray-200 text-dark px-6 py-3 rounded-full font-medium"
+                            data-lang="en">Contact Sales</a>
+                        <a href="#contact" class="bg-gray-200 text-dark px-6 py-3 rounded-full font-medium hidden"
+                            data-lang="uk">Зв'язатися</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="bg-primary py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold text-white mb-6" data-lang="en">Ready to Secure Your Telegram Group?</h2>
+                <h2 class="text-3xl font-bold text-white mb-6 hidden" data-lang="uk">Готові захистити вашу групу
+                    Telegram?</h2>
+
+                <p class="text-blue-100 text-xl mb-8" data-lang="en">Join thousands of communities using our AI-powered
+                    moderation</p>
+                <p class="text-blue-100 text-xl mb-8 hidden" data-lang="uk">Приєднуйтесь до тисяч спільнот, які
+                    використовують нашу AI-модерацію</p>
+
+                <a href="https://t.me/your_bot_username"
+                    class="bg-white text-primary hover:bg-light px-8 py-4 rounded-full font-semibold text-lg transition-colors">
+                    <i class="fab fa-telegram-plane mr-2"></i>
+                    <span data-lang="en">Add Bot Now</span>
+                    <span data-lang="uk" class="hidden">Додати бота</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SafeChat AI</h3>
+                    <p class="text-gray-400" data-lang="en">AI-powered Telegram moderation for safer communities.</p>
+                    <p class="text-gray-400 hidden" data-lang="uk">AI-модерація Telegram для безпечніших спільнот.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" data-lang="en">Quick Links</h4>
+                    <h4 class="font-semibold mb-4 hidden" data-lang="uk">Швидкі посилання</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors"
+                                data-lang="en">Features</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors hidden"
+                                data-lang="uk">Функції</a></li>
+
+                        <li><a href="#how-it-works" class="text-gray-400 hover:text-white transition-colors"
+                                data-lang="en">How It Works</a></li>
+                        <li><a href="#how-it-works" class="text-gray-400 hover:text-white transition-colors hidden"
+                                data-lang="uk">Як це працює</a></li>
+
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors"
+                                data-lang="en">Pricing</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors hidden"
+                                data-lang="uk">Ціни</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" data-lang="en">Support</h4>
+                    <h4 class="font-semibold mb-4 hidden" data-lang="uk">Підтримка</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors"
+                                data-lang="en">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors hidden"
+                                data-lang="uk">Документація</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" data-lang="en">FAQ</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors hidden"
+                                data-lang="uk">FAQ</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors"
+                                data-lang="en">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors hidden"
+                                data-lang="uk">Контакти</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" data-lang="en">Connect</h4>
+                    <h4 class="font-semibold mb-4 hidden" data-lang="uk">Зв'язок</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i
+                                class="fab fa-telegram-plane text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i
+                                class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i
+                                class="fab fa-github text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p data-lang="en">&copy; 2024 SafeChat AI. All rights reserved.</p>
+                <p class="hidden" data-lang="uk">&copy; 2024 SafeChat AI. Всі права захищені.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language switching functionality
+        let currentLanguage = 'en';
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+
+            // Update all elements with data-lang attributes
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                if (element.getAttribute('data-lang') === lang) {
+                    element.classList.remove('hidden');
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
+
+            // Update language switcher UI
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+            document.getElementById('check-en').classList.toggle('hidden', lang !== 'uk');
+            document.getElementById('check-uk').classList.toggle('hidden', lang !== 'en');
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+
+            // Save preference to localStorage
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Initialize language from localStorage or browser preference
+        function initLanguage() {
+
+            const savedLanguage = localStorage.getItem('preferredLanguage');
+            const browserLanguage = navigator.language.substring(0, 2);
+
+            if (savedLanguage) {
+                switchLanguage(savedLanguage);
+            } else if (browserLanguage === 'uk') {
+                switchLanguage('uk');
+            } else {
+                switchLanguage('en');
+            }
+        }
+
+        // Add event listeners to language switcher buttons
+        document.querySelectorAll('.language-switch').forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.getAttribute('data-lang');
+                console.log(lang)
+                if (lang == 'uk') {
+                    console.log(lang)
+                    switchLanguage('en');
+                } else {
+                    switchLanguage('uk');
+                }
+
+            });
+
+        });
+
+        // Navigation handling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Replace with actual bot username
+        const botUsername = 'your_bot_username';
+        document.querySelectorAll('a[href="https://t.me/your_bot_username"]').forEach(link => {
+            link.href = `https://t.me/${botUsername}`;
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initLanguage);
+    </script>
+</body>
+
+</html>
