@@ -1,379 +1,703 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
-    <base target="_self">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NSFW Chat Filter - Telegram Bot for NSFW Filtering</title>
-    <meta name="description"
-        content="AI-powered Telegram bot for automatic NSFW content filtering and chat moderation. Keep your groups safe with intelligent content detection.">
-    <meta name="keywords" content="telegram bot, nsfw filter, ai moderation, chat safety, content filtering">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>NSFW Chat Filter - AI Модератор для Telegram</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="favicon.ico">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#0088cc",
-                        secondary: "#2aabee",
-                        accent: "#ff6b6b",
-                        dark: "#2c3e50",
-                        light: "#ecf0f1"
-                    }
-                }
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-bg: #0f0f1e;
+            --card-bg: #1a1a2e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0b8;
+            --accent: #9d4edd;
+            --success: #4caf50;
+            --danger: #f44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .lang-switcher {
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 5px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .lang-btn {
+            padding: 8px 15px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(157, 78, 221, 0.2), transparent 70%);
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--text-secondary);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--primary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(157, 78, 221, 0.6);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: rgba(26, 26, 46, 0.5);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-gradient);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+
+        /* How to Connect */
+        .how-to-connect {
+            padding: 80px 0;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .step {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .step h3 {
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background: rgba(26, 26, 46, 0.5);
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px 30px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Популярний';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-card p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-card li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card li i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 15, 30, 0.8);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
             }
         }
-    </script>
+    </style>
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-    <header class="bg-white shadow-lg">
-        <nav class="container mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                        <i class="fas fa-robot text-white text-xl"></i>
-                    </div>
-                    <span class="text-xl font-bold text-dark" data-lang="en">NSFW Chat Filter</span>
-                    <span class="text-xl font-bold text-dark hidden" data-lang="uk">NSFW Chat Filter</span>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-halved"></i>
+                    <h1>NSFW Chat Filter</h1>
                 </div>
-
-                <div class="flex items-center space-x-4">
-                    <div class="relative group">
-                        <button
-                            class="flex items-center space-x-2 px-3 py-2 rounded-lg border border-gray-200 hover:border-primary transition-colors">
-                            <i class="fas fa-globe text-gray-600"></i>
-                            <span class="font-medium" id="current-lang">EN</span>
-                            <i class="fas fa-chevron-down text-xs"></i>
-                        </button>
-                        <div
-                            class="absolute top-full right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                            <button
-                                class="w-full text-left px-4 py-2 hover:bg-gray-50 rounded-t-lg flex items-center justify-between language-switch"
-                                data-lang="en">
-                                <span>Українська</span>
-                                <i class="fas fa-check text-primary text-sm hidden" id="check-en"></i>
-                            </button>
-                            <button
-                                class="w-full text-left px-4 py-2 hover:bg-gray-50 rounded-b-lg flex items-center justify-between language-switch"
-                                data-lang="uk">
-                                <span>English</span>
-                                <i class="fas fa-check text-primary text-sm hidden" id="check-uk"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="hidden md:flex space-x-8">
-                        <a href="#features" class="text-dark hover:text-primary transition-colors font-medium"
-                            data-lang="en">Features</a>
-                        <a href="#features" class="text-dark hover:text-primary transition-colors font-medium hidden"
-                            data-lang="uk">Функції</a>
-
-                        <a href="#how-it-works" class="text-dark hover:text-primary transition-colors font-medium"
-                            data-lang="en">How It Works</a>
-                        <a href="#how-it-works"
-                            class="text-dark hover:text-primary transition-colors font-medium hidden" data-lang="uk">Як
-                            це працює</a>
-
-                        <a href="#pricing" class="text-dark hover:text-primary transition-colors font-medium"
-                            data-lang="en">Pricing</a>
-                        <a href="#pricing" class="text-dark hover:text-primary transition-colors font-medium hidden"
-                            data-lang="uk">Ціни</a>
-                    </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="switchLanguage('uk')">UA</button>
+                    <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
                 </div>
-
-                <a href="https://t.me/nsfwchatfilter_bot"
-                    class="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-full font-medium transition-colors"
-                    data-lang="en">
-                    Get Started
-                </a>
-                <a href="https://t.me/nsfwchatfilter_bot"
-                    class="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-full font-medium transition-colors hidden"
-                    data-lang="uk">
-                    Почати
-                </a>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="container mx-auto px-4 py-16">
-            <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-dark mb-6" data-lang="en">
-                    AI-Powered NSFW Filter for Telegram
-                </h1>
-                <h1 class="text-4xl md:text-6xl font-bold text-dark mb-6 hidden" data-lang="uk">
-                    AI-фільтр NSFW для Telegram
-                </h1>
+    <section class="hero">
+        <div class="container">
+            <h2 data-uk="AI Модератор для Telegram" data-en="AI Moderator for Telegram">AI Модератор для Telegram</h2>
+            <p data-uk="Автоматична модерація коментарів з AI-аналізом профілів, текстів та зображень. Захистіть ваші чати від спаму та небажаного контенту."
+                data-en="Automatic comment moderation with AI analysis of profiles, texts and images. Protect your chats from spam and unwanted content.">
+                Автоматична модерація коментарів з AI-аналізом профілів, текстів та зображень. Захистіть ваші чати від
+                спаму та небажаного контенту.
+            </p>
+            <a href="https://t.me/nsfwchatfilter_bot" class="cta-button" target="_blank">
+                <i class="fab fa-telegram-plane"></i>
+                <span data-uk="Запустити бота" data-en="Start Bot">Запустити бота</span>
+            </a>
+        </div>
+    </section>
 
-                <p class="text-xl text-gray-600 mb-8" data-lang="en">
-                    Keep your Telegram groups safe with intelligent content moderation.
-                    Our AI automatically detects and filters inappropriate content in real-time.
-                </p>
-                <p class="text-xl text-gray-600 mb-8 hidden" data-lang="uk">
-                    Захищайте свої групи Telegram за допомогою інтелектуальної модерації контенту.
-                    Наш ШІ автоматично виявляє та фільтрує неприйнятний контент у реальному часі.
-                </p>
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title" data-uk="Можливості бота" data-en="Bot Features">Можливості бота</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3 data-uk="NSFW Детектор" data-en="NSFW Detector">NSFW Детектор</h3>
+                    <p data-uk="Автоматичне виявлення небажаного контенту в фото профілів користувачів"
+                        data-en="Automatic detection of unwanted content in user profile photos">
+                        Автоматичне виявлення небажаного контенту в фото профілів користувачів
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comment-slash"></i>
+                    </div>
+                    <h3 data-uk="Модерація тексту" data-en="Text Moderation">Модерація тексту</h3>
+                    <p data-uk="Аналіз коментарів, імен та біографій на наявність забороненого контенту"
+                        data-en="Analysis of comments, names and biographies for prohibited content">
+                        Аналіз коментарів, імен та біографій на наявність забороненого контенту
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3 data-uk="Боротьба зі спамом" data-en="Spam Protection">Боротьба зі спамом</h3>
+                    <p data-uk="Виявлення та блокування спам-повідомлень та спам-акаунтів"
+                        data-en="Detection and blocking of spam messages and spam accounts">
+                        Виявлення та блокування спам-повідомлень та спам-акаунтів
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3 data-uk="Кастомні правила" data-en="Custom Rules">Кастомні правила</h3>
+                    <p data-uk="Створення власних правил модерації за допомогою штучного інтелекту"
+                        data-en="Creating custom moderation rules using artificial intelligence">
+                        Створення власних правил модерації за допомогою штучного інтелекту
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-uk="Аналітика та статистика" data-en="Analytics & Statistics">Аналітика та статистика</h3>
+                    <p data-uk="Детальна статистика видалених коментарів та заблокованих користувачів"
+                        data-en="Detailed statistics of deleted comments and blocked users">
+                        Детальна статистика видалених коментарів та заблокованих користувачів
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 data-uk="Гнучкі налаштування" data-en="Flexible Settings">Гнучкі налаштування</h3>
+                    <p data-uk="Налаштування рівнів модерації, часу активності та інших параметрів"
+                        data-en="Setting moderation levels, activity time and other parameters">
+                        Налаштування рівнів модерації, часу активності та інших параметрів
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://t.me/nsfwchatfilter_bot"
-                        class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-full font-semibold text-lg transition-colors">
-                        <i class="fab fa-telegram-plane mr-2"></i>
-                        <span data-lang="en">Add to Telegram</span>
-                        <span data-lang="uk" class="hidden">Додати до Telegram</span>
+    <section class="how-to-connect">
+        <div class="container">
+            <h2 class="section-title" data-uk="Як підключити бота" data-en="How to Connect Bot">Як підключити бота</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 data-uk="Оформіть підписку" data-en="Subscribe">Оформіть підписку</h3>
+                    <p data-uk="Оберіть потрібну кількість токенів для модерації вашого чату"
+                        data-en="Select the required number of tokens for moderating your chat">
+                        Оберіть потрібну кількість токенів для модерації вашого чату
+                    </p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 data-uk="Додайте бота в чат" data-en="Add Bot to Chat">Додайте бота в чат</h3>
+                    <p data-uk="Додайте бота до вашого Telegram-каналу з правами адміністратора"
+                        data-en="Add the bot to your Telegram channel with administrator rights">
+                        Додайте бота до вашого Telegram-каналу з правами адміністратора
+                    </p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 data-uk="Активуйте бота" data-en="Activate Bot">Активуйте бота</h3>
+                    <p data-uk="Введіть отримані коди в чат для активації модерації"
+                        data-en="Enter the received codes in the chat to activate moderation">
+                        Введіть отримані коди в чат для активації модерації
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title" data-uk="Покупка токенів на місяць" data-en="Purchase of tokens per month">Покупка
+                токенів на місяць</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3 data-uk="Базовий" data-en="Basic">Базовий</h3>
+                    <div class="price">25M<span data-uk="токенів" data-en="tokens">токенів</span></div>
+                    <p data-uk="Для невеликих каналів" data-en="For small channels">Для невеликих каналів</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> <span data-uk="Модерація до 3 коментарів/хв"
+                                data-en="Moderation up to 3 comments/min">Модерація до 3 коментарів/хв</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="Базові налаштування"
+                                data-en="Basic settings">Базові налаштування</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="Статистика видалень"
+                                data-en="Deletion statistics">Статистика видалень</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="Підтримка 24/7" data-en="24/7 support">Підтримка
+                                24/7</span></li>
+                    </ul>
+                    <a href="https://t.me/nsfwchatfilter_bot" class="cta-button" target="_blank" data-uk="Обрати план"
+                        data-en="Choose Plan">Обрати план</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3 data-uk="Стандарт" data-en="Standard">Стандарт</h3>
+                    <div class="price">50M<span data-uk="токенів" data-en="tokens">токенів</span></div>
+                    <p data-uk="Для середніх каналів" data-en="For medium channels">Для середніх каналів</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> <span data-uk="Модерація до 6 коментарів/хв"
+                                data-en="Moderation up to 6 comments/min">Модерація до 6 коментарів/хв</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="Розширені налаштування"
+                                data-en="Advanced settings">Розширені налаштування</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="Кастомні правила AI"
+                                data-en="Custom AI rules">Кастомні правила AI</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="Детальна аналітика"
+                                data-en="Detailed analytics">Детальна аналітика</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="Пріоритетна підтримка"
+                                data-en="Priority support">Пріоритетна підтримка</span></li>
+                    </ul>
+                    <a href="https://t.me/nsfwchatfilter_bot" class="cta-button" target="_blank" data-uk="Обрати план"
+                        data-en="Choose Plan">Обрати план</a>
+                </div>
+                <div class="pricing-card">
+                    <h3 data-uk="Преміум" data-en="Premium">Преміум</h3>
+                    <div class="price">800M<span data-uk="токенів" data-en="tokens">токенів</span></div>
+                    <p data-uk="Для великих каналів" data-en="For large channels">Для великих каналів</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> <span data-uk="Модерація до 93 коментарів/хв"
+                                data-en="Moderation up to 93 comments/min">Модерація до 93 коментарів/хв</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="Всі функції бота" data-en="All bot features">Всі
+                                функції бота</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="Персональний менеджер"
+                                data-en="Personal manager">Персональний менеджер</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="API для розробників"
+                                data-en="API for developers">API для розробників</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="VIP підтримка" data-en="VIP support">VIP
+                                підтримка</span></li>
+                    </ul>
+                    <a href="https://t.me/nsfwchatfilter_bot" class="cta-button" target="_blank" data-uk="Обрати план"
+                        data-en="Choose Plan">Обрати план</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://t.me/nsfwchatfilter_bot" target="_blank">
+                        <i class="fab fa-telegram-plane"></i> Telegram
+                    </a>
+                    <a href="#" onclick="showPrivacyPolicy()">
+                        <i class="fas fa-shield-alt"></i> <span data-uk="Політика конфіденційності"
+                            data-en="Privacy Policy">Політика конфіденційності</span>
                     </a>
                 </div>
-            </div>
-        </section>
-
-        <section id="features" class="bg-white py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-dark mb-12" data-lang="en">Powerful Features</h2>
-                <h2 class="text-3xl font-bold text-center text-dark mb-12 hidden" data-lang="uk">Потужні функції</h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="text-center p-6 rounded-lg bg-light">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-brain text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-dark mb-3" data-lang="en">AI Content Detection</h3>
-                        <h3 class="text-xl font-semibold text-dark mb-3 hidden" data-lang="uk">AI-детекція контенту</h3>
-                        <p class="text-gray-600" data-lang="en">Advanced machine learning algorithms detect NSFW content
-                            with 99% accuracy across images, videos, and text.</p>
-                        <p class="text-gray-600 hidden" data-lang="uk">Просунуті алгоритми машинного навчання виявляють
-                            NSFW-контент з точністю 99% у зображеннях, відео та тексті.</p>
-                    </div>
-                    <div class="text-center p-6 rounded-lg bg-light">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-shield-alt text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-dark mb-3" data-lang="en">Real-time Moderation</h3>
-                        <h3 class="text-xl font-semibold text-dark mb-3 hidden" data-lang="uk">Модерація в реальному
-                            часі</h3>
-                        <p class="text-gray-600" data-lang="en">Instant content analysis and automatic removal of
-                            inappropriate material before it reaches your members.</p>
-                        <p class="text-gray-600 hidden" data-lang="uk">Миттєвий аналіз контенту та автоматичне видалення
-                            неприйнятного матеріалу до того, як він дійде до учасників.</p>
-                    </div>
-                    <div class="text-center p-6 rounded-lg bg-light">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-cogs text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-dark mb-3" data-lang="en">Customizable Settings</h3>
-                        <h3 class="text-xl font-semibold text-dark mb-3 hidden" data-lang="uk">Налаштування</h3>
-                        <p class="text-gray-600" data-lang="en">Adjust sensitivity levels, set custom filters, and
-                            configure moderation rules to match your community standards.</p>
-                        <p class="text-gray-600 hidden" data-lang="uk">Налаштуйте рівні чутливості, встановлюйте власні
-                            фільтри та конфігуруйте правила модерації під стандарти вашої спільноти.</p>
-                    </div>
+                <div class="copyright">
+                    © 2025 NSFW Chat Filter. <span data-uk="Всі права захищені. Цей сайт не збирає персональні дані."
+                        data-en="All rights reserved. This site does not collect personal data.">
+                        Всі права захищені. Цей сайт не збирає персональні дані.
+                    </span>
                 </div>
-            </div>
-        </section>
-
-        <section id="how-it-works" class="py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-dark mb-12" data-lang="en">How It Works</h2>
-                <h2 class="text-3xl font-bold text-center text-dark mb-12 hidden" data-lang="uk">Як це працює</h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-white text-2xl font-bold">1</span>
-                        </div>
-                        <h3 class="text-lg font-semibold text-dark mb-2" data-lang="en">Add Bot</h3>
-                        <h3 class="text-lg font-semibold text-dark mb-2 hidden" data-lang="uk">Додати бота</h3>
-                        <p class="text-gray-600" data-lang="en">Add our bot to your Telegram group as an admin</p>
-                        <p class="text-gray-600 hidden" data-lang="uk">Додайте нашого бота до вашої групи Telegram як
-                            адміністратора</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-white text-2xl font-bold">2</span>
-                        </div>
-                        <h3 class="text-lg font-semibold text-dark mb-2" data-lang="en">Configure</h3>
-                        <h3 class="text-lg font-semibold text-dark mb-2 hidden" data-lang="uk">Налаштувати</h3>
-                        <p class="text-gray-600" data-lang="en">Set up your moderation preferences and rules</p>
-                        <p class="text-gray-600 hidden" data-lang="uk">Налаштуйте ваші уподобання та правила модерації
-                        </p>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-white text-2xl font-bold">3</span>
-                        </div>
-                        <h3 class="text-lg font-semibold text-dark mb-2" data-lang="en">Monitor</h3>
-                        <h3 class="text-lg font-semibold text-dark mb-2 hidden" data-lang="uk">Моніторинг</h3>
-                        <p class="text-gray-600" data-lang="en">Bot automatically scans all incoming messages</p>
-                        <p class="text-gray-600 hidden" data-lang="uk">Бот автоматично сканує всі вхідні повідомлення
-                        </p>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-white text-2xl font-bold">4</span>
-                        </div>
-                        <h3 class="text-lg font-semibold text-dark mb-2" data-lang="en">Protect</h3>
-                        <h3 class="text-lg font-semibold text-dark mb-2 hidden" data-lang="uk">Захист</h3>
-                        <p class="text-gray-600" data-lang="en">Inappropriate content is filtered instantly</p>
-                        <p class="text-gray-600 hidden" data-lang="uk">Неприйнятний контент фільтрується миттєво</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="pricing" class="bg-white py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-dark mb-12" data-lang="en">Simple Pricing</h2>
-                <h2 class="text-3xl font-bold text-center text-dark mb-12 hidden" data-lang="uk">Просте ціноутворення
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                    <div class="border-2 border-gray-200 rounded-lg p-8 text-center">
-                        <h3 class="text-2xl font-bold text-dark mb-4" data-lang="en">Free Tier</h3>
-                        <h3 class="text-2xl font-bold text-dark mb-4 hidden" data-lang="uk">Безкоштовний</h3>
-                        <div class="text-4xl font-bold text-primary mb-6">$0</div>
-                        <ul class="space-y-3 mb-8">
-                            <li data-lang="en">✓ Basic NSFW filtering 3 days</li>
-                            <li data-lang="en">✓ Up to 100 messages/day</li>
-                            <li data-lang="en">✓ Image detection</li>
-                            <li data-lang="en">✗ Advanced features</li>
-
-                            <li class="hidden" data-lang="uk">✓ Базове фільтрування NSFW 3 дні</li>
-                            <li class="hidden" data-lang="uk">✓ До 100 повідомлень/день</li>
-                            <li class="hidden" data-lang="uk">✓ Детекція зображень</li>
-                            <li class="hidden" data-lang="uk">✗ Розширені функції</li>
-                        </ul>
-                    </div>
-                    <div class="border-2 border-primary rounded-lg p-8 text-center relative">
-                        <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 rounded-bl-lg"
-                            data-lang="en">Popular</div>
-                        <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 rounded-bl-lg hidden"
-                            data-lang="uk">Популярний</div>
-                        <h3 class="text-2xl font-bold text-dark mb-4" data-lang="en">Pro</h3>
-                        <h3 class="text-2xl font-bold text-dark mb-4 hidden" data-lang="uk">Pro</h3>
-                        <div class="text-4xl font-bold text-primary mb-6">$19,43<span class="text-lg"
-                                data-lang="en">/mo</span><span class="text-lg hidden" data-lang="uk">/міс</span></div>
-                        <ul class="space-y-3 mb-8">
-                            <li data-lang="en">✓ Advanced AI filtering</li>
-                            <li data-lang="en">✓ Unlimited messages</li>
-                            <li data-lang="en">✓ Image & video detection</li>
-                            <li data-lang="en">✓ Custom rules</li>
-
-                            <li class="hidden" data-lang="uk">✓ Розширене AI-фільтрування</li>
-                            <li class="hidden" data-lang="uk">✓ Необмежені повідомлення</li>
-                            <li class="hidden" data-lang="uk">✓ Детекція зображень та відео</li>
-                            <li class="hidden" data-lang="uk">✓ Власні правила</li>
-                        </ul>
-                    </div>
-                    <div class="border-2 border-gray-200 rounded-lg p-8 text-center">
-                        <h3 class="text-2xl font-bold text-dark mb-4" data-lang="en">Enterprise</h3>
-                        <h3 class="text-2xl font-bold text-dark mb-4 hidden" data-lang="uk">Для бізнесу</h3>
-                        <div class="text-4xl font-bold text-primary mb-6" data-lang="en">Custom</div>
-                        <div class="text-3xl font-bold text-primary mb-6 hidden" data-lang="uk">Індивідуально</div>
-                        <ul class="space-y-3 mb-8">
-                            <li data-lang="en">✓ All Pro features</li>
-                            <li data-lang="en">✓ Multiple groups</li>
-                            <li data-lang="en">✓ Priority support</li>
-                            <li data-lang="en">✓ Custom integration</li>
-
-                            <li class="hidden" data-lang="uk">✓ Всі Pro функції</li>
-                            <li class="hidden" data-lang="uk">✓ Кілька груп</li>
-                            <li class="hidden" data-lang="uk">✓ Пріоритетна підтримка</li>
-                            <li class="hidden" data-lang="uk">✓ Індивідуальна інтеграція</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-primary py-16">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold text-white mb-6" data-lang="en">Ready to Secure Your Telegram Group?</h2>
-                <h2 class="text-3xl font-bold text-white mb-6 hidden" data-lang="uk">Готові захистити вашу групу
-                    Telegram?</h2>
-
-                <p class="text-blue-100 text-xl mb-8" data-lang="en">Join thousands of communities using our AI-powered
-                    moderation</p>
-                <p class="text-blue-100 text-xl mb-8 hidden" data-lang="uk">Приєднуйтесь до тисяч спільнот, які
-                    використовують нашу AI-модерацію</p>
-
-                <a href="https://t.me/nsfwchatfilter_bot"
-                    class="bg-white text-primary hover:bg-light px-8 py-4 rounded-full font-semibold text-lg transition-colors">
-                    <i class="fab fa-telegram-plane mr-2"></i>
-                    <span data-lang="en">Add Bot Now</span>
-                    <span data-lang="uk" class="hidden">Додати бота</span>
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-dark text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p data-lang="en">© 2025 NSFW Chat Filter. All rights reserved. This site does not collect any personal data.
-                </p>
-                <p class="hidden" data-lang="uk">© 2025 NSFW Chat Filter. Всі права захищені. Цей сайт не збирає персональні
-                    дані.</p>
             </div>
         </div>
     </footer>
 
-
     <script>
-        let currentLanguage = 'en';
-
         function switchLanguage(lang) {
-            currentLanguage = lang;
-
-            document.querySelectorAll('[data-lang]').forEach(element => {
-                if (element.getAttribute('data-lang') === lang) {
-                    element.classList.remove('hidden');
-                } else {
-                    element.classList.add('hidden');
-                }
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
             });
+            document.querySelector(`.lang-btn:nth-child(${lang === 'uk' ? 1 : 2})`).classList.add('active');
 
-            document.getElementById('current-lang').textContent = lang.toUpperCase();
-            document.getElementById('check-en').classList.toggle('hidden', lang !== 'uk');
-            document.getElementById('check-uk').classList.toggle('hidden', lang !== 'en');
+            document.querySelectorAll('[data-uk]').forEach(element => {
+                element.textContent = element.getAttribute(`data-${lang}`);
+            });
 
             document.documentElement.lang = lang;
-
-            localStorage.setItem('preferredLanguage', lang);
         }
 
-        function initLanguage() {
+        function showPrivacyPolicy() {
+            const policyText = {
+                uk: `
+                    <h2>Політика конфіденційності</h2>
+                    <p>Цей сайт не збирає, не зберігає і не обробляє жодних персональних даних користувачів.</p>
+                    <p>Ми не використовуємо файли cookie, трекери або будь-які інші технології відстеження.</p>
+                    <p>Вся інформація, яку ви надаєте боту в Telegram, обробляється відповідно до Політики конфіденційності Telegram.</p>
+                    <p>Якщо у вас є питання щодо конфіденційності, звертайтеся до нас через Telegram бота.</p>
+                `,
+                en: `
+                    <h2>Privacy Policy</h2>
+                    <p>This website does not collect, store or process any personal user data.</p>
+                    <p>We do not use cookies, trackers or any other tracking technologies.</p>
+                    <p>All information you provide to the bot in Telegram is processed in accordance with Telegram's Privacy Policy.</p>
+                    <p>If you have privacy questions, please contact us through the Telegram bot.</p>
+                `
+            };
 
-            const savedLanguage = localStorage.getItem('preferredLanguage');
-            const browserLanguage = navigator.language.substring(0, 2);
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                padding: 20px;
+            `;
 
-            if (savedLanguage) {
-                switchLanguage(savedLanguage);
-            } else if (browserLanguage === 'uk') {
-                switchLanguage('uk');
-            } else {
-                switchLanguage('en');
-            }
-        }
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: var(--card-bg);
+                border-radius: 15px;
+                padding: 40px;
+                max-width: 600px;
+                max-height: 80vh;
+                overflow-y: auto;
+                border: 1px solid rgba(157, 78, 221, 0.3);
+            `;
 
+            content.innerHTML = policyText[document.documentElement.lang] +
+                `<button onclick="this.closest('div').remove()" style="
+                    margin-top: 20px;
+                    padding: 10px 20px;
+                    background: var(--primary-gradient);
+                    color: white;
+                    border: none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    font-weight: 600;
+                ">${document.documentElement.lang === 'uk' ? 'Закрити' : 'Close'}</button>`;
 
-        document.querySelectorAll('.language-switch').forEach(button => {
-            button.addEventListener('click', () => {
-                const lang = button.getAttribute('data-lang');
-                console.log(lang)
-                if (lang == 'uk') {
-                    console.log(lang)
-                    switchLanguage('en');
-                } else {
-                    switchLanguage('uk');
-                }
-
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            content.addEventListener('click', (e) => {
+                if (e.target === modal) modal.remove();
             });
-
-        });
-
-
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.remove();
+            });
+        }
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -387,14 +711,26 @@
             });
         });
 
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-        const botUsername = 'nsfwchatfilter_bot';
-        document.querySelectorAll('a[href="https://t.me/your_bot_username"]').forEach(link => {
-            link.href = `https://t.me/${botUsername}`;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .step, .pricing-card').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
         });
-
-
-        document.addEventListener('DOMContentLoaded', initLanguage);
     </script>
 </body>
 
