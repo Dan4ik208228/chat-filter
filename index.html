@@ -264,6 +264,18 @@
             background: rgba(26, 26, 46, 0.5);
         }
 
+        .pricing-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .pricing-intro p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
         .pricing-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -350,6 +362,41 @@
             margin-right: 10px;
         }
 
+        .bot-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: var(--primary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        .bot-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(157, 78, 221, 0.6);
+        }
+
+        .bot-button i {
+            font-size: 1.2rem;
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
         /* Footer */
         footer {
             background: rgba(15, 15, 30, 0.8);
@@ -383,6 +430,89 @@
         .copyright {
             color: var(--text-secondary);
             font-size: 0.9rem;
+        }
+
+        .legal-info {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(26, 26, 46, 0.5);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent);
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .legal-info h3 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 50px auto;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: var(--text-primary);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--danger);
+        }
+
+        .modal-body {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .modal-body h3 {
+            color: var(--text-primary);
+            margin: 20px 0 10px;
+        }
+
+        .modal-body ul {
+            margin-left: 20px;
+        }
+
+        .modal-body li {
+            margin-bottom: 10px;
         }
 
         /* Responsive */
@@ -535,16 +665,27 @@
 
     <section class="pricing">
         <div class="container">
-            <h2 class="section-title" data-uk="Покупка токенів на місяць" data-en="Purchase of tokens per month">Покупка
-                токенів на місяць</h2>
+            <h2 class="section-title" data-uk="Обери свій рівень AI-модерації"
+                data-en="Choose Your AI Moderation Level">Обери свій рівень AI-модерації</h2>
+
+            <div class="pricing-intro">
+                <p data-uk="Залиш токсичні коментарі в минулому 😎 AI-бот автоматично фільтрує спам, образи та підозрілі повідомлення у твоєму Telegram-чаті. Оплата здійснюється лише за використання штучного інтелекту — кожне повідомлення “з’їдає” невелику кількість токенів OpenAI."
+                    data-en="Leave toxic comments in the past 😎 AI bot automatically filters spam, insults and suspicious messages in your Telegram chat. Payment is made only for the use of artificial intelligence - each message “consumes” a small amount of OpenAI tokens.">
+                    Залиш токсичні коментарі в минулому 😎 AI-бот автоматично фільтрує спам, образи та підозрілі
+                    повідомлення у твоєму Telegram-чаті. Оплата здійснюється лише за використання штучного інтелекту —
+                    кожне повідомлення “з’їдає” невелику кількість токенів OpenAI.
+                </p>
+            </div>
+
             <div class="pricing-cards">
                 <div class="pricing-card">
-                    <h3 data-uk="Базовий" data-en="Basic">Базовий</h3>
-                    <div class="price">25M<span data-uk="токенів" data-en="tokens">токенів</span></div>
+                    <h3 data-uk="Starter" data-en="Starter">Starter</h3>
+                    <div class="price">150<span data-uk="грн / міс" data-en="UAH / month">грн / міс</span></div>
                     <p data-uk="Для невеликих каналів" data-en="For small channels">Для невеликих каналів</p>
                     <ul>
-                        <li><i class="fas fa-check"></i> <span data-uk="Модерація до 3 коментарів/хв"
-                                data-en="Moderation up to 3 comments/min">Модерація до 3 коментарів/хв</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="AI-модерація до 25 000 повідомлень"
+                                data-en="AI moderation up to 25,000 messages">AI-модерація до 25 000 повідомлень</span>
+                        </li>
                         <li><i class="fas fa-check"></i> <span data-uk="Базові налаштування"
                                 data-en="Basic settings">Базові налаштування</span></li>
                         <li><i class="fas fa-check"></i> <span data-uk="Статистика видалень"
@@ -552,16 +693,21 @@
                         <li><i class="fas fa-check"></i> <span data-uk="Підтримка 24/7" data-en="24/7 support">Підтримка
                                 24/7</span></li>
                     </ul>
-                    <a href="https://t.me/nsfwchatfilter_bot" class="cta-button" target="_blank" data-uk="Обрати план"
-                        data-en="Choose Plan">Обрати план</a>
+
+                    <a href="https://t.me/nsfwchatfilter_bot" class="bot-button" target="_blank">
+                        <i class="fab fa-telegram-plane"></i>
+                        <span data-uk="До бота" data-en="To Bot">До бота</span>
+                    </a>
                 </div>
+
                 <div class="pricing-card featured">
-                    <h3 data-uk="Стандарт" data-en="Standard">Стандарт</h3>
-                    <div class="price">50M<span data-uk="токенів" data-en="tokens">токенів</span></div>
+                    <h3 data-uk="Standard" data-en="Standard">Standard</h3>
+                    <div class="price">290<span data-uk="грн / міс" data-en="UAH / month">грн / міс</span></div>
                     <p data-uk="Для середніх каналів" data-en="For medium channels">Для середніх каналів</p>
                     <ul>
-                        <li><i class="fas fa-check"></i> <span data-uk="Модерація до 6 коментарів/хв"
-                                data-en="Moderation up to 6 comments/min">Модерація до 6 коментарів/хв</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="AI-модерація до 50 000 повідомлень"
+                                data-en="AI moderation up to 50,000 messages">AI-модерація до 50 000 повідомлень</span>
+                        </li>
                         <li><i class="fas fa-check"></i> <span data-uk="Розширені налаштування"
                                 data-en="Advanced settings">Розширені налаштування</span></li>
                         <li><i class="fas fa-check"></i> <span data-uk="Кастомні правила AI"
@@ -571,16 +717,22 @@
                         <li><i class="fas fa-check"></i> <span data-uk="Пріоритетна підтримка"
                                 data-en="Priority support">Пріоритетна підтримка</span></li>
                     </ul>
-                    <a href="https://t.me/nsfwchatfilter_bot" class="cta-button" target="_blank" data-uk="Обрати план"
-                        data-en="Choose Plan">Обрати план</a>
+
+                    <a href="https://t.me/nsfwchatfilter_bot" class="bot-button" target="_blank">
+                        <i class="fab fa-telegram-plane"></i>
+                        <span data-uk="До бота" data-en="To Bot">До бота</span>
+                    </a>
                 </div>
+
                 <div class="pricing-card">
-                    <h3 data-uk="Преміум" data-en="Premium">Преміум</h3>
-                    <div class="price">800M<span data-uk="токенів" data-en="tokens">токенів</span></div>
+                    <h3 data-uk="Pro" data-en="Pro">Pro</h3>
+                    <div class="price">4200<span data-uk="грн / міс" data-en="UAH / month">грн / міс</span></div>
                     <p data-uk="Для великих каналів" data-en="For large channels">Для великих каналів</p>
                     <ul>
-                        <li><i class="fas fa-check"></i> <span data-uk="Модерація до 93 коментарів/хв"
-                                data-en="Moderation up to 93 comments/min">Модерація до 93 коментарів/хв</span></li>
+                        <li><i class="fas fa-check"></i> <span
+                                data-uk="AI-модерація великих чатів (до 800 000 повідомлень)"
+                                data-en="AI moderation for large chats (up to 800,000 messages)">AI-модерація великих
+                                чатів (до 800 000 повідомлень)</span></li>
                         <li><i class="fas fa-check"></i> <span data-uk="Всі функції бота" data-en="All bot features">Всі
                                 функції бота</span></li>
                         <li><i class="fas fa-check"></i> <span data-uk="Персональний менеджер"
@@ -590,9 +742,18 @@
                         <li><i class="fas fa-check"></i> <span data-uk="VIP підтримка" data-en="VIP support">VIP
                                 підтримка</span></li>
                     </ul>
-                    <a href="https://t.me/nsfwchatfilter_bot" class="cta-button" target="_blank" data-uk="Обрати план"
-                        data-en="Choose Plan">Обрати план</a>
+
+                    <a href="https://t.me/nsfwchatfilter_bot" class="bot-button" target="_blank">
+                        <i class="fab fa-telegram-plane"></i>
+                        <span data-uk="До бота" data-en="To Bot">До бота</span>
+                    </a>
                 </div>
+            </div>
+
+            <div class="pricing-note"
+                data-uk="Один пакет діє 30 днів або до вичерпання обсягу AI-аналізу (що настане раніше)."
+                data-en="One package is valid for 30 days or until the AI analysis volume is exhausted (whichever comes first).">
+                Один пакет діє 30 днів або до вичерпання обсягу AI-аналізу (що настане раніше).
             </div>
         </div>
     </section>
@@ -604,11 +765,26 @@
                     <a href="https://t.me/nsfwchatfilter_bot" target="_blank">
                         <i class="fab fa-telegram-plane"></i> Telegram
                     </a>
-                    <a href="#" onclick="showPrivacyPolicy()">
+                    <a href="#" id="privacyLink">
                         <i class="fas fa-shield-alt"></i> <span data-uk="Політика конфіденційності"
                             data-en="Privacy Policy">Політика конфіденційності</span>
                     </a>
+                    <a href="#" id="termsLink">
+                        <i class="fas fa-file-contract"></i> <span data-uk="Умови користування"
+                            data-en="Terms of Service">Умови користування</span>
+                    </a>
                 </div>
+
+                <div class="legal-info">
+                    <h3 data-uk="Важлива інформація" data-en="Important Information">Важлива інформація</h3>
+                    <p data-uk="Послуга надається в електронному вигляді. Користувач отримує доступ до функціоналу AI-модерації Telegram-чатів через інтеграцію з Telegram-ботом. Повернення коштів не здійснюється після активації пакету, окрім випадків технічної помилки при оплаті."
+                        data-en="The service is provided electronically. The user gets access to the AI moderation functionality for Telegram chats through integration with the Telegram bot. Refunds are not made after activating the package, except in cases of technical payment error.">
+                        Послуга надається в електронному вигляді. Користувач отримує доступ до функціоналу AI-модерації
+                        Telegram-чатів через інтеграцію з Telegram-ботом. Повернення коштів не здійснюється після
+                        активації пакету, окрім випадків технічної помилки при оплаті.
+                    </p>
+                </div>
+
                 <div class="copyright">
                     © 2025 NSFW Chat Filter. <span data-uk="Всі права захищені. Цей сайт не збирає персональні дані."
                         data-en="All rights reserved. This site does not collect personal data.">
@@ -619,117 +795,188 @@
         </div>
     </footer>
 
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-uk="Політика конфіденційності" data-en="Privacy Policy">Політика конфіденційності</h2>
+                <button class="close-modal" onclick="closeModal('privacyModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p data-uk="Цей сайт не збирає, не зберігає і не обробляє жодних персональних даних користувачів."
+                    data-en="This website does not collect, store or process any personal user data.">
+                    Цей сайт не збирає, не зберігає і не обробляє жодних персональних даних користувачів.
+                </p>
+                <p data-uk="Ми не використовуємо файли cookie, трекери або будь-які інші технології відстеження."
+                    data-en="We do not use cookies, trackers or any other tracking technologies.">
+                    Ми не використовуємо файли cookie, трекери або будь-які інші технології відстеження.
+                </p>
+                <p data-uk="Вся інформація, яку ви надаєте боту в Telegram, обробляється відповідно до Політики конфіденційності Telegram."
+                    data-en="All information you provide to the bot in Telegram is processed in accordance with Telegram's Privacy Policy.">
+                    Вся інформація, яку ви надаєте боту в Telegram, обробляється відповідно до Політики конфіденційності
+                    Telegram.
+                </p>
+                <p data-uk="Якщо у вас є питання щодо конфіденційності, звертайтеся до нас через Telegram бота."
+                    data-en="If you have privacy questions, please contact us through the Telegram bot.">
+                    Якщо у вас є питання щодо конфіденційності, звертайтеся до нас через Telegram бота.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-uk="Умови користування" data-en="Terms of Service">Умови користування</h2>
+                <button class="close-modal" onclick="closeModal('termsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3 data-uk="1. Загальні положення" data-en="1. General Provisions">1. Загальні положення</h3>
+                <p data-uk="Цей сайт є інформаційним ресурсом про AI-модератора для Telegram-чатів."
+                    data-en="This website is an information resource about the AI moderator for Telegram chats.">
+                    Цей сайт є інформаційним ресурсом про AI-модератора для Telegram-чатів.
+                </p>
+
+                <h3 data-uk="2. Послуги" data-en="2. Services">2. Послуги</h3>
+                <p data-uk="Послуга надається в електронному вигляді. Користувач отримує доступ до функціоналу AI-модерації Telegram-чатів через інтеграцію з Telegram-ботом."
+                    data-en="The service is provided electronically. The user gets access to the AI moderation functionality for Telegram chats through integration with the Telegram bot.">
+                    Послуга надається в електронному вигляді. Користувач отримує доступ до функціоналу AI-модерації
+                    Telegram-чатів через інтеграцію з Telegram-ботом.
+                </p>
+
+                <h3 data-uk="3. Оплата та повернення коштів" data-en="3. Payment and Refunds">3. Оплата та повернення
+                    коштів</h3>
+                <p data-uk="Повернення коштів не здійснюється після активації пакету, окрім випадків технічної помилки при оплаті."
+                    data-en="Refunds are not made after activating the package, except in cases of technical payment error.">
+                    Повернення коштів не здійснюється після активації пакету, окрім випадків технічної помилки при
+                    оплаті.
+                </p>
+
+                <h3 data-uk="4. Відповідальність" data-en="4. Liability">4. Відповідальність</h3>
+                <p data-uk="Адміністрація не несе відповідальності за будь-які збитки, що можуть виникнути в результаті використання або неможливості використання сервісу."
+                    data-en="The administration is not responsible for any damages that may arise as a result of using or being unable to use the service.">
+                    Адміністрація не несе відповідальності за будь-які збитки, що можуть виникнути в результаті
+                    використання або неможливості використання сервісу.
+                </p>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function switchLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`.lang-btn:nth-child(${lang === 'uk' ? 1 : 2})`).classList.add('active');
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOM loaded, initializing functions...');
 
-            document.querySelectorAll('[data-uk]').forEach(element => {
-                element.textContent = element.getAttribute(`data-${lang}`);
-            });
+            // Language switching
+            window.switchLanguage = function (lang) {
+                console.log('Switching language to:', lang);
 
-            document.documentElement.lang = lang;
-        }
+                // Update active button
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
 
-        function showPrivacyPolicy() {
-            const policyText = {
-                uk: `
-                    <h2>Політика конфіденційності</h2>
-                    <p>Цей сайт не збирає, не зберігає і не обробляє жодних персональних даних користувачів.</p>
-                    <p>Ми не використовуємо файли cookie, трекери або будь-які інші технології відстеження.</p>
-                    <p>Вся інформація, яку ви надаєте боту в Telegram, обробляється відповідно до Політики конфіденційності Telegram.</p>
-                    <p>Якщо у вас є питання щодо конфіденційності, звертайтеся до нас через Telegram бота.</p>
-                `,
-                en: `
-                    <h2>Privacy Policy</h2>
-                    <p>This website does not collect, store or process any personal user data.</p>
-                    <p>We do not use cookies, trackers or any other tracking technologies.</p>
-                    <p>All information you provide to the bot in Telegram is processed in accordance with Telegram's Privacy Policy.</p>
-                    <p>If you have privacy questions, please contact us through the Telegram bot.</p>
-                `
+                if (lang === 'uk') {
+                    document.querySelector('.lang-btn:first-child').classList.add('active');
+                } else {
+                    document.querySelector('.lang-btn:last-child').classList.add('active');
+                }
+
+                // Update text content
+                document.querySelectorAll('[data-uk]').forEach(element => {
+                    const ukText = element.getAttribute('data-uk');
+                    const enText = element.getAttribute('data-en');
+
+                    if (lang === 'uk' && ukText) {
+                        element.textContent = ukText;
+                    } else if (lang === 'en' && enText) {
+                        element.textContent = enText;
+                    }
+                });
+
+                // Update document language
+                document.documentElement.lang = lang;
+
+                console.log('Language switched to:', lang);
             };
 
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.8);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                padding: 20px;
-            `;
+            // Modal functions
+            window.showPrivacyPolicy = function () {
+                console.log('Showing privacy policy modal');
+                document.getElementById('privacyModal').style.display = 'block';
+            };
 
-            const content = document.createElement('div');
-            content.style.cssText = `
-                background: var(--card-bg);
-                border-radius: 15px;
-                padding: 40px;
-                max-width: 600px;
-                max-height: 80vh;
-                overflow-y: auto;
-                border: 1px solid rgba(157, 78, 221, 0.3);
-            `;
+            window.showTermsOfService = function () {
+                console.log('Showing terms of service modal');
+                document.getElementById('termsModal').style.display = 'block';
+            };
 
-            content.innerHTML = policyText[document.documentElement.lang] +
-                `<button onclick="this.closest('div').remove()" style="
-                    margin-top: 20px;
-                    padding: 10px 20px;
-                    background: var(--primary-gradient);
-                    color: white;
-                    border: none;
-                    border-radius: 25px;
-                    cursor: pointer;
-                    font-weight: 600;
-                ">${document.documentElement.lang === 'uk' ? 'Закрити' : 'Close'}</button>`;
+            window.closeModal = function (modalId) {
+                console.log('Closing modal:', modalId);
+                document.getElementById(modalId).style.display = 'none';
+            };
 
-            modal.appendChild(content);
-            document.body.appendChild(modal);
-            content.addEventListener('click', (e) => {
-                if (e.target === modal) modal.remove();
-            });
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) modal.remove();
-            });
-        }
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            // Add event listeners for privacy and terms links
+            document.getElementById('privacyLink').addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                showPrivacyPolicy();
+            });
+
+            document.getElementById('termsLink').addEventListener('click', function (e) {
+                e.preventDefault();
+                showTermsOfService();
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function (event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
                 }
             });
-        });
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
+                    // Skip if href is just "#"
+                    if (href === '#') return;
+
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.feature-card, .step, .pricing-card').forEach(el => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+            // Add animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.feature-card, .step, .pricing-card').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            console.log('All functions initialized successfully');
         });
     </script>
 </body>
