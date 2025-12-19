@@ -2,54 +2,126 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Політика конфіденційності | NSFW Chat Filter</title>
-    <meta name="description" content="Політика конфіденційності сервісу NSFW Chat Filter">
+    <title>Privacy Policy | NSFW Chat Filter</title>
+    <meta name="description" content="Privacy Policy of NSFW Chat Filter service">
     <meta name="robots" content="index, follow">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e, #1a1a2e);
+            color: #e0e0e0;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 40px;
+            background: rgba(26, 26, 46, 0.95);
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0,0,0,.5);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #667eea, #9d4edd);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        h2 { margin-top: 30px; color: #fff; }
+        p, li { color: #cfcfe8; line-height: 1.6; }
+
+        a { color: #9d4edd; text-decoration: none; font-weight: 600; }
+        a:hover { text-decoration: underline; }
+
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .lang-switch button {
+            background: transparent;
+            border: 1px solid #9d4edd;
+            color: #9d4edd;
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .lang-switch button.active {
+            background: #9d4edd;
+            color: #fff;
+        }
+
+        .back { margin-top: 40px; display: inline-block; }
+    </style>
 </head>
+
 <body>
+<div class="page">
 
-<h1>Політика конфіденційності</h1>
+    <div class="lang-switch">
+        <button data-lang-btn="uk">UA</button>
+        <button data-lang-btn="en">EN</button>
+    </div>
 
-<p>Ця Політика конфіденційності описує, як сервіс <strong>NSFW Chat Filter</strong> обробляє інформацію користувачів.</p>
+    <h1 data-lang="uk">Політика конфіденційності</h1>
+    <h1 data-lang="en">Privacy Policy</h1>
 
-<h2>1. Загальні положення</h2>
-<p>
-Сайт NSFW Chat Filter не збирає, не зберігає та не обробляє персональні дані відвідувачів сайту.
-Вся взаємодія з сервісом здійснюється виключно через Telegram-бота.
-</p>
+    <p data-lang="uk">
+        Сервіс <strong>NSFW Chat Filter</strong> поважає вашу конфіденційність та не збирає персональні дані відвідувачів сайту.
+    </p>
+    <p data-lang="en">
+        The <strong>NSFW Chat Filter</strong> service respects your privacy and does not collect personal data from website visitors.
+    </p>
 
-<h2>2. Які дані обробляються</h2>
-<p>Під час роботи Telegram-бот може обробляти:</p>
-<ul>
-    <li>Telegram ID користувача (для ідентифікації підписки)</li>
-    <li>Повідомлення в чатах (лише для модерації, без збереження)</li>
-    <li>Налаштування модерації, встановлені користувачем</li>
-</ul>
+    <h2 data-lang="uk">1. Дані, що обробляються</h2>
+    <h2 data-lang="en">1. Processed Data</h2>
 
-<h2>3. Зберігання даних</h2>
-<p>
-Повідомлення не зберігаються після аналізу.  
-Ми не створюємо баз даних повідомлень або контенту користувачів.
-</p>
+    <ul data-lang="uk">
+        <li>Telegram ID користувача</li>
+        <li>Повідомлення для автоматичної модерації</li>
+        <li>Налаштування сервісу</li>
+    </ul>
 
-<h2>4. Платіжна інформація</h2>
-<p>
-Оплата здійснюється через платіжні сервіси третіх сторін (наприклад, Portmone).
-Ми не маємо доступу до даних банківських карток та не зберігаємо їх.
-</p>
+    <ul data-lang="en">
+        <li>User Telegram ID</li>
+        <li>Messages for automatic moderation</li>
+        <li>Service configuration settings</li>
+    </ul>
 
-<h2>5. Захист інформації</h2>
-<p>
-Сайт використовує захищене HTTPS-з’єднання.
-Вся передача даних відбувається в зашифрованому вигляді.
-</p>
+    <h2 data-lang="uk">2. Платежі</h2>
+    <h2 data-lang="en">2. Payments</h2>
 
-<h2>6. Контакти</h2>
-<p>
-Якщо у вас виникли питання щодо конфіденційності, звертайтесь до служби підтримки через Telegram-бот.
-</p>
+    <p data-lang="uk">
+        Оплата здійснюється через сторонні платіжні сервіси. Дані банківських карток не зберігаються.
+    </p>
+    <p data-lang="en">
+        Payments are processed via third-party providers. Card details are not stored.
+    </p>
 
-<p><a href="/">← Повернутися на головну</a></p>
+    <a href="/" class="back" data-lang="uk">← На головну</a>
+    <a href="/" class="back" data-lang="en">← Back to home</a>
 
+</div>
+
+<script>
+const buttons = document.querySelectorAll('[data-lang-btn]');
+const blocks = document.querySelectorAll('[data-lang]');
+
+function setLang(lang) {
+    blocks.forEach(b => b.style.display = b.dataset.lang === lang ? '' : 'none');
+    buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.langBtn === lang));
+    localStorage.setItem('siteLang', lang);
+}
+
+setLang(localStorage.getItem('siteLang') || 'uk');
+buttons.forEach(b => b.onclick = () => setLang(b.dataset.langBtn));
+</script>
 </body>
 </html>
