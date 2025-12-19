@@ -2,54 +2,127 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Політика повернення коштів</title>
+    <title>Refund Policy</title>
     <link rel="stylesheet" href="/assets/docs.css">
+    <script src="/assets/lang.js" defer></script>
 </head>
 <body>
 
 <div class="container">
-    <header>
+
+    <header style="display:flex;justify-content:space-between;align-items:center;">
         <a href="/">← На головну</a>
+
+        <div class="lang-switch">
+            <button id="ua" onclick="switchLang('ua')">UA</button>
+            <button id="en" onclick="switchLang('en')">EN</button>
+        </div>
     </header>
 
-    <h1>Політика повернення коштів</h1>
+    <!-- ================= UA ================= -->
+    <div data-ua>
 
-    <h2>1. Загальні положення</h2>
-    <p>
-        Ця політика визначає умови повернення коштів за послуги
-        AI-модерації Telegram-чатів.
-    </p>
+        <h1>Політика повернення коштів</h1>
 
-    <h2>2. Умови повернення</h2>
-    <ul>
-        <li>Технічна помилка при оплаті</li>
-        <li>Неможливість активації з вини Виконавця</li>
-        <li>Скасування протягом 14 днів, якщо використано менше 10% ліміту</li>
-    </ul>
+        <h2>1. Загальні положення</h2>
+        <p>
+            Ця Політика повернення коштів визначає умови, за яких клієнти можуть
+            вимагати повернення коштів за послуги AI-модерації Telegram-чатів.
+        </p>
 
-    <h2>3. Процедура повернення</h2>
-    <ul>
-        <li>Звернення через Telegram бота або email</li>
-        <li>Розгляд заявки до 3 робочих днів</li>
-        <li>Повернення коштів протягом 5–10 робочих днів</li>
-    </ul>
+        <h2>2. Умови повернення коштів</h2>
+        <p>Повернення коштів можливе у наступних випадках:</p>
+        <ul>
+            <li>Технічна помилка при здійсненні платежу (подвійне списання коштів)</li>
+            <li>Неможливість активації послуги з вини Виконавця</li>
+            <li>
+                Скасування підписки протягом 14 календарних днів з моменту активації,
+                за умови використання не більше 10% обсягу обробки повідомлень
+            </li>
+        </ul>
 
-    <h2>4. Коли повернення не здійснюється</h2>
-    <ul>
-        <li>Використано більше 10% ліміту</li>
-        <li>Порушення правил сервісу</li>
-        <li>Зміна думки після 14 днів</li>
-    </ul>
+        <h2>3. Процедура повернення коштів</h2>
+        <ul>
+            <li>Клієнт звертається до служби підтримки через Telegram-бота або електронну пошту</li>
+            <li>Вказує причину повернення та надає ID свого акаунта</li>
+            <li>Служба підтримки розглядає заявку протягом 3 (трьох) робочих днів</li>
+            <li>
+                У разі схвалення кошти повертаються на картку клієнта
+                протягом 5–10 робочих днів
+            </li>
+        </ul>
 
-    <h2>5. Часткове повернення</h2>
-    <p>
-        У виняткових випадках можливе часткове повернення
-        або продовження терміну дії послуги.
-    </p>
+        <h2>4. Випадки, коли повернення не здійснюється</h2>
+        <p>Повернення коштів НЕ здійснюється у наступних випадках:</p>
+        <ul>
+            <li>Після успішної активації підписки та використання більше 10% обсягу обробки повідомлень</li>
+            <li>При достроковому припиненні використання послуг з вини клієнта</li>
+            <li>При зміні думки після оплати, якщо минуло більше 14 днів</li>
+            <li>У разі порушення умов використання сервісу</li>
+        </ul>
+
+        <h2>5. Часткове повернення коштів</h2>
+        <p>
+            У виняткових випадках Виконавець може, на власний розсуд,
+            запропонувати часткове повернення коштів або продовження
+            терміну дії послуги з урахуванням конкретних обставин.
+        </p>
+
+    </div>
+
+    <!-- ================= EN ================= -->
+    <div data-en>
+
+        <h1>Refund Policy</h1>
+
+        <h2>1. General Provisions</h2>
+        <p>
+            This Refund Policy defines the conditions under which clients may
+            request a refund for AI-based moderation services for Telegram chats.
+        </p>
+
+        <h2>2. Refund Eligibility</h2>
+        <p>Refunds may be granted in the following cases:</p>
+        <ul>
+            <li>Technical payment error (e.g., double charge)</li>
+            <li>Inability to activate the Service due to the fault of the Service Provider</li>
+            <li>
+                Cancellation of the subscription within 14 calendar days from activation,
+                provided that no more than 10% of the message processing limit has been used
+            </li>
+        </ul>
+
+        <h2>3. Refund Procedure</h2>
+        <ul>
+            <li>The Client contacts customer support via the Telegram bot or email</li>
+            <li>Provides the reason for the refund request and their account ID</li>
+            <li>The support team reviews the request within 3 (three) business days</li>
+            <li>
+                If approved, the refund is issued to the Client’s bank card
+                within 5–10 business days
+            </li>
+        </ul>
+
+        <h2>4. Non-Refundable Cases</h2>
+        <p>Refunds are NOT provided in the following cases:</p>
+        <ul>
+            <li>After successful activation of the subscription and usage of more than 10% of the message processing limit</li>
+            <li>Early termination of Service usage due to the Client’s actions</li>
+            <li>Change of mind after payment if more than 14 days have passed</li>
+            <li>Violation of the Terms of Service</li>
+        </ul>
+
+        <h2>5. Partial Refunds</h2>
+        <p>
+            In exceptional cases, the Service Provider may, at its sole discretion,
+            offer a partial refund or extend the Service period based on the specific circumstances.
+        </p>
+
+    </div>
 
     <footer>© 2025 NSFW Chat Filter</footer>
+
 </div>
 
-<script src="/assets/lang.js"></script>
 </body>
 </html>
