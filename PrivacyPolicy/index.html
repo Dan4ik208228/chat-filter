@@ -2,60 +2,134 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Політика конфіденційності</title>
+    <title>Privacy Policy</title>
     <link rel="stylesheet" href="/assets/docs.css">
+    <script src="/assets/lang.js" defer></script>
 </head>
 <body>
 
 <div class="container">
-    <header>
+
+    <header style="display:flex;justify-content:space-between;align-items:center;">
         <a href="/">← На головну</a>
+
+        <div class="lang-switch">
+            <button id="ua" onclick="switchLang('ua')">UA</button>
+            <button id="en" onclick="switchLang('en')">EN</button>
+        </div>
     </header>
 
-    <h1>Політика конфіденційності</h1>
+    <!-- ================= UA ================= -->
+    <div data-ua>
 
-    <h2>1. Загальні положення</h2>
-    <p>
-        Цей сайт не збирає, не зберігає і не обробляє персональні дані відвідувачів сайту.
-        Ми не використовуємо файли cookie, трекери або будь-які інші технології відстеження.
-    </p>
+        <h1>Політика конфіденційності</h1>
 
-    <h2>2. Обробка даних через Telegram бота</h2>
-    <p>Вся взаємодія з сервісом здійснюється через Telegram бота. Бот обробляє:</p>
-    <ul>
-        <li>ID Telegram користувача для ідентифікації підписки</li>
-        <li>Повідомлення в чаті для модерації (тимчасово, не зберігаються)</li>
-        <li>Налаштування модерації, обрані користувачем</li>
-    </ul>
+        <h2>1. Загальні положення</h2>
+        <p>
+            Цей сайт не збирає, не зберігає і не обробляє персональні дані
+            відвідувачів сайту. Ми не використовуємо файли cookie, трекери
+            або будь-які інші технології відстеження.
+        </p>
 
-    <h2>3. Платіжна інформація</h2>
-    <p>
-        Оплата здійснюється через Portmone — сертифікований платіжний шлюз з PCI DSS сертифікацією.
-        Ми не зберігаємо дані банківських карток. Всі платіжні дані обробляються
-        виключно на стороні Portmone з використанням TLS-шифрування.
-    </p>
+        <h2>2. Обробка даних через Telegram-бота</h2>
+        <p>
+            Вся взаємодія з сервісом здійснюється через Telegram-бота.
+            Бот може обробляти наступні дані:
+        </p>
+        <ul>
+            <li>ID користувача Telegram — для ідентифікації підписки</li>
+            <li>Повідомлення в чаті — виключно для цілей модерації (тимчасово, без збереження)</li>
+            <li>Налаштування модерації, обрані користувачем</li>
+        </ul>
 
-    <h2>4. Захист даних</h2>
-    <p>
-        Сайт використовує SSL-сертифікат для шифрування з'єднання (HTTPS).
-        Всі дані передаються в зашифрованому вигляді.
-    </p>
+        <h2>3. Платіжна інформація</h2>
+        <p>
+            Оплата послуг здійснюється через Portmone — сертифікований платіжний
+            шлюз з відповідністю стандарту PCI DSS.
+        </p>
+        <p>
+            Ми не зберігаємо та не обробляємо дані банківських карток.
+            Усі платіжні дані обробляються виключно на стороні Portmone
+            з використанням TLS-шифрування.
+        </p>
 
-    <h2>5. Зміни політики</h2>
-    <p>
-        Ми залишаємо за собою право оновлювати цю політику.
-        Зміни набувають чинності з моменту публікації на сайті.
-    </p>
+        <h2>4. Захист даних</h2>
+        <p>
+            Сайт використовує SSL-сертифікат (HTTPS) для захищеного з’єднання.
+            Всі дані передаються в зашифрованому вигляді.
+        </p>
 
-    <h2>6. Контакти</h2>
-    <p>
-        Якщо у вас виникли питання щодо конфіденційності,
-        зв'яжіться з нами через Telegram бота або електронну пошту.
-    </p>
+        <h2>5. Зміни до політики</h2>
+        <p>
+            Ми залишаємо за собою право оновлювати цю Політику конфіденційності.
+            Зміни набувають чинності з моменту їх публікації на сайті.
+        </p>
+
+        <h2>6. Контакти</h2>
+        <p>
+            Якщо у вас виникли питання щодо конфіденційності,
+            зв’яжіться з нами через Telegram-бота або електронну пошту.
+        </p>
+
+    </div>
+
+    <!-- ================= EN ================= -->
+    <div data-en>
+
+        <h1>Privacy Policy</h1>
+
+        <h2>1. General Provisions</h2>
+        <p>
+            This website does not collect, store, or process any personal data
+            of website visitors. We do not use cookies, trackers, or any other
+            tracking technologies.
+        </p>
+
+        <h2>2. Data Processing via Telegram Bot</h2>
+        <p>
+            All interaction with the Service is carried out through a Telegram bot.
+            The bot may process the following data:
+        </p>
+        <ul>
+            <li>Telegram User ID — for subscription identification purposes</li>
+            <li>Chat messages — processed solely for moderation purposes (temporarily, not stored)</li>
+            <li>Moderation settings selected by the user</li>
+        </ul>
+
+        <h2>3. Payment Information</h2>
+        <p>
+            Payments are processed via Portmone, a certified payment gateway
+            compliant with the PCI DSS standard.
+        </p>
+        <p>
+            We do not store or process bank card details.
+            All payment data is processed exclusively by Portmone
+            using TLS encryption.
+        </p>
+
+        <h2>4. Data Security</h2>
+        <p>
+            The website uses an SSL certificate (HTTPS) to secure data transmission.
+            All data is transmitted in encrypted form.
+        </p>
+
+        <h2>5. Policy Updates</h2>
+        <p>
+            We reserve the right to update this Privacy Policy.
+            Any changes become effective from the moment they are published on the website.
+        </p>
+
+        <h2>6. Contact Information</h2>
+        <p>
+            If you have any questions regarding privacy,
+            please contact us via the Telegram bot or email.
+        </p>
+
+    </div>
 
     <footer>© 2025 NSFW Chat Filter</footer>
+
 </div>
 
-<script src="/assets/lang.js"></script>
 </body>
 </html>
