@@ -116,7 +116,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 10px;
         }
 
         .nav-link {
@@ -124,7 +124,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
-            padding: 5px 10px;
+            padding: 0px 15px;
             border-radius: 5px;
         }
 
@@ -797,6 +797,88 @@
                 align-items: center;
             }
         }
+
+        .menu-toggle {
+            display: none;
+            /* прихований на десктопі */
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25px;
+            height: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            background: var(--text-secondary);
+            border-radius: 2px;
+        }
+
+        /* Nav menu */
+        nav {
+            background: rgba(26, 26, 46, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 90px;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+            max-height: 500px;
+            /* десктоп */
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* Мобільні стилі */
+        @media (max-width: 992px) {
+           
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                max-height: 50px;
+            }
+
+            nav.active {
+                max-height: 500px;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+        @media (max-width: 430px) {
+             .logo h1 {
+                font-size:  1.1rem;
+
+            }
+
+        }
     </style>
 </head>
 
@@ -806,19 +888,9 @@
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-shield-halved"></i>
-                    <h1>NSFW Chat Filter</h1>
+                    <h1 class="header-logo-m">NSFW Chat Filter</h1>
                 </div>
-                
-                    <div class="nav-menu">
-                        <a href="#home" class="nav-link" data-uk="Головна" data-en="Home">Головна</a>
-                        <a href="#features" class="nav-link"  data-uk="Можливості" data-en="Features">Можливості</a>
-                        <a href="#how-to-connect" class="nav-link"  data-uk="Як підключити" data-en="How to connect">Як підключити</a>
-                        <a href="#pricing" class="nav-link"  data-uk="Ціни" data-en="Pricing">Ціни</a>
-                        <a href="#faq" class="nav-link"  data-uk="Питання та відповіді" data-en="FAQ">Питання та відповіді</a>
-                        <a href="#cancellation" class="nav-link"  data-uk="Скасування" data-en="Cancellation">Скасування</a>
-                        <a href="#docs" class="nav-link"  data-uk="Документи" data-en="Docs">Документи</a>
-                    </div>
-               
+
                 <div class="lang-switcher">
                     <button class="lang-btn active" onclick="switchLanguage('uk')">UA</button>
                     <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
@@ -830,14 +902,22 @@
     <!-- Navigation Menu -->
     <nav>
         <div class="container">
-            <div class="nav-menu">
+            <!-- Hamburger Button -->
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-menu" id="navMenu">
                 <a href="#home" class="nav-link" data-uk="Головна" data-en="Home">Головна</a>
-                <a href="#features" class="nav-link"  data-uk="Можливості" data-en="Features">Можливості</a>
-                <a href="#how-to-connect" class="nav-link"  data-uk="Як підключити" data-en="How to connect">Як підключити</a>
-                <a href="#pricing" class="nav-link"  data-uk="Ціни" data-en="Pricing">Ціни</a>
-                <a href="#faq" class="nav-link"  data-uk="Питання та відповіді" data-en="FAQ">Питання та відповіді</a>
-                <a href="#cancellation" class="nav-link"  data-uk="Скасування" data-en="Cancellation">Скасування</a>
-                <a href="#docs" class="nav-link"  data-uk="Документи" data-en="Docs">Документи</a>
+                <a href="#features" class="nav-link" data-uk="Можливості" data-en="Features">Можливості</a>
+                <a href="#how-to-connect" class="nav-link" data-uk="Як підключити" data-en="How to connect">Як
+                    підключити</a>
+                <a href="#pricing" class="nav-link" data-uk="Ціни" data-en="Pricing">Ціни</a>
+                <a href="#faq" class="nav-link" data-uk="Питання та відповіді" data-en="FAQ">Питання та відповіді</a>
+                <a href="#cancellation" class="nav-link" data-uk="Скасування" data-en="Cancellation">Скасування</a>
+                <a href="#docs" class="nav-link" data-uk="Документи" data-en="Docs">Документи</a>
             </div>
         </div>
     </nav>
@@ -936,7 +1016,8 @@
 
     <section class="simple-explanation">
         <div class="container">
-            <h2 class="section-title" data-uk="Як це працює для початківців" data-en="How it works for beginners">Як це працює для початківців</h2>
+            <h2 class="section-title" data-uk="Як це працює для початківців" data-en="How it works for beginners">Як це
+                працює для початківців</h2>
             <div class="explanation-content">
                 <div class="explanation-card">
                     <div class="explanation-icon">
@@ -945,7 +1026,8 @@
                     <h3 data-uk="Що таке AI-модератор?" data-en="What is an AI moderator?">Що таке AI-модератор?</h3>
                     <p data-uk="Це розумний бот, який самостійно перевіряє всі повідомлення у вашому чаті. Якщо хтось пише погані слова або надсилає неприйнятні фото, бот видаляє їх ще до того, як інші побачать."
                         data-en="This is a smart bot that independently checks all messages in your chat. If someone writes bad words or sends inappropriate photos, the bot deletes them before others see them.">
-                        Це розумний бот, який самостійно перевіряє всі повідомлення у вашому чаті. Якщо хтось пише погані слова або надсилає неприйнятні фото, бот видаляє їх ще до того, як інші побачать.
+                        Це розумний бот, який самостійно перевіряє всі повідомлення у вашому чаті. Якщо хтось пише
+                        погані слова або надсилає неприйнятні фото, бот видаляє їх ще до того, як інші побачать.
                     </p>
                 </div>
                 <div class="explanation-card">
@@ -955,7 +1037,8 @@
                     <h3 data-uk="Чому це важливо?" data-en="Why is this important?">Чому це важливо?</h3>
                     <p data-uk="Великі чати часто стають мішенню для спамерів та тролів. Наш бот захищає вашу аудиторію від образ, реклами та іншого небажаного контенту, створюючи безпечну атмосферу для спілкування."
                         data-en="Large chats often become targets for spammers and trolls. Our bot protects your audience from insults, advertising and other unwanted content, creating a safe atmosphere for communication.">
-                        Великі чати часто стають мішенню для спамерів та тролів. Наш бот захищає вашу аудиторію від образ, реклами та іншого небажаного контенту, створюючи безпечну атмосферу для спілкування.
+                        Великі чати часто стають мішенню для спамерів та тролів. Наш бот захищає вашу аудиторію від
+                        образ, реклами та іншого небажаного контенту, створюючи безпечну атмосферу для спілкування.
                     </p>
                 </div>
                 <div class="explanation-card">
@@ -965,7 +1048,8 @@
                     <h3 data-uk="Як це оплачується?" data-en="How is this paid for?">Як це оплачується?</h3>
                     <p data-uk="Ви купуєте підписку на певний період (30 днів). Вартість залежить від того, скільки повідомлень потрібно перевірити. Чим більший ваш чат, тим вигідніший тариф Pro або Enterprise."
                         data-en="You buy a subscription for a certain period (30 days). The cost depends on how many messages need to be checked. The larger your chat, the more profitable the Pro or Enterprise tariff is.">
-                        Ви купуєте підписку на певний період (30 днів). Вартість залежить від того, скільки повідомлень потрібно перевірити. Чим більший ваш чат, тим вигідніший тариф Pro або Enterprise.
+                        Ви купуєте підписку на певний період (30 днів). Вартість залежить від того, скільки повідомлень
+                        потрібно перевірити. Чим більший ваш чат, тим вигідніший тариф Pro або Enterprise.
                     </p>
                 </div>
             </div>
@@ -981,7 +1065,9 @@
                     <h3 data-uk="Оформіть підписку" data-en="Subscribe">Оформіть підписку</h3>
                     <p data-uk="Оберіть потрібний пакет обробки повідомлень для модерації вашого чату. Оплата здійснюється через Telegram бота за допомогою банківської картки (Visa, Mastercard) через захищений платіжний шлюз Portmone."
                         data-en="Select the required message processing package for moderating your chat. Payment is made through the Telegram bot using a bank card (Visa, Mastercard) through the secure Portmone payment gateway.">
-                        Оберіть потрібний пакет обробки повідомлень для модерації вашого чату. Оплата здійснюється через Telegram бота за допомогою банківської картки (Visa, Mastercard) через захищений платіжний шлюз Portmone.
+                        Оберіть потрібний пакет обробки повідомлень для модерації вашого чату. Оплата здійснюється через
+                        Telegram бота за допомогою банківської картки (Visa, Mastercard) через захищений платіжний шлюз
+                        Portmone.
                     </p>
                 </div>
                 <div class="step">
@@ -989,7 +1075,8 @@
                     <h3 data-uk="Додайте бота в чат" data-en="Add Bot to Chat">Додайте бота в чат</h3>
                     <p data-uk="Додайте бота до вашого Telegram-каналу з правами адміністратора. Бот потребує прав на видалення повідомлень та блокування користувачів для ефективної модерації."
                         data-en="Add the bot to your Telegram channel with administrator rights. The bot needs rights to delete messages and block users for effective moderation.">
-                        Додайте бота до вашого Telegram-каналу з правами адміністратора. Бот потребує прав на видалення повідомлень та блокування користувачів для ефективної модерації.
+                        Додайте бота до вашого Telegram-каналу з правами адміністратора. Бот потребує прав на видалення
+                        повідомлень та блокування користувачів для ефективної модерації.
                     </p>
                 </div>
                 <div class="step">
@@ -997,7 +1084,9 @@
                     <h3 data-uk="Активуйте бота" data-en="Activate Bot">Активуйте бота</h3>
                     <p data-uk="Після успішної оплати ви отримаєте код активації. Введіть його в чат, щоб розпочати AI-модерацію. Підписка активується автоматично і діє 30 днів або до вичерпання ліміту обробки повідомлень."
                         data-en="After successful payment you will receive an activation code. Enter it in the chat to start AI moderation. The subscription is activated automatically and is valid for 30 days or until the message processing limit is exhausted.">
-                        Після успішної оплати ви отримаєте код активації. Введіть його в чат, щоб розпочати AI-модерацію. Підписка активується автоматично і діє 30 днів або до вичерпання ліміту обробки повідомлень.
+                        Після успішної оплати ви отримаєте код активації. Введіть його в чат, щоб розпочати
+                        AI-модерацію. Підписка активується автоматично і діє 30 днів або до вичерпання ліміту обробки
+                        повідомлень.
                     </p>
                 </div>
             </div>
@@ -1068,9 +1157,9 @@
                     <div class="price">6270<span data-uk="₴/міс" data-en="₴/month">₴/міс</span></div>
                     <p data-uk="Для великих каналів" data-en="For large channels">Для великих каналів</p>
                     <ul>
-                        <li><i class="fas fa-check"></i> <span
-                                data-uk="AI-модерація до 33.000 повідомлень"
-                                data-en="AI moderation up to 33.000 messages">AI-модерація до 33.000 повідомлень</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uk="AI-модерація до 33.000 повідомлень"
+                                data-en="AI moderation up to 33.000 messages">AI-модерація до 33.000 повідомлень</span>
+                        </li>
                         <li><i class="fas fa-check"></i> <span data-uk="Всі функції бота" data-en="All bot features">Всі
                                 функції бота</span></li>
                         <li><i class="fas fa-check"></i> <span data-uk="API для розробників"
@@ -1089,7 +1178,9 @@
             <div class="pricing-note">
                 <p data-uk="⚠️ Один пакет діє 30 днів або до вичерпання ліміту обробки повідомлень (що настане раніше). Оплата здійснюється через захищений платіжний шлюз Portmone. Після оплати послуги автоматично активуються на вашому акаунті."
                     data-en="⚠️ One package is valid for 30 days or until the message processing limit is exhausted (whichever comes first). Payment is made through the secure Portmone payment gateway. After payment, services are automatically activated on your account.">
-                    ⚠️ Один пакет діє 30 днів або до вичерпання ліміту обробки повідомлень (що настане раніше). Оплата здійснюється через захищений платіжний шлюз Portmone. Після оплати послуги автоматично активуються на вашому акаунті.
+                    ⚠️ Один пакет діє 30 днів або до вичерпання ліміту обробки повідомлень (що настане раніше). Оплата
+                    здійснюється через захищений платіжний шлюз Portmone. Після оплати послуги автоматично активуються
+                    на вашому акаунті.
                 </p>
             </div>
         </div>
@@ -1097,47 +1188,60 @@
 
     <section class="faq" id="faq">
         <div class="container">
-            <h2 class="section-title" data-uk="Питання та відповіді" data-en="Questions & Answers">Питання та відповіді</h2>
+            <h2 class="section-title" data-uk="Питання та відповіді" data-en="Questions & Answers">Питання та відповіді
+            </h2>
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span data-uk="Як працює AI-модератор?" data-en="How does the AI moderator work?">Як працює AI-модератор?</span>
+                        <span data-uk="Як працює AI-модератор?" data-en="How does the AI moderator work?">Як працює
+                            AI-модератор?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
                         <p data-uk="AI-модератор аналізує всі повідомлення у вашому чаті в реальному часі. Він використовує передові алгоритми машинного навчання для виявлення спаму, образ, реклами та іншого небажаного контенту. Коли система виявляє порушення, вона автоматично видаляє повідомлення або блокує користувача, залежно від налаштувань."
                             data-en="The AI moderator analyzes all messages in your chat in real time. It uses advanced machine learning algorithms to detect spam, insults, advertising and other unwanted content. When the system detects a violation, it automatically deletes the message or blocks the user, depending on the settings.">
-                            AI-модератор аналізує всі повідомлення у вашому чаті в реальному часі. Він використовує передові алгоритми машинного навчання для виявлення спаму, образ, реклами та іншого небажаного контенту. Коли система виявляє порушення, вона автоматично видаляє повідомлення або блокує користувача, залежно від налаштувань.
+                            AI-модератор аналізує всі повідомлення у вашому чаті в реальному часі. Він використовує
+                            передові алгоритми машинного навчання для виявлення спаму, образ, реклами та іншого
+                            небажаного контенту. Коли система виявляє порушення, вона автоматично видаляє повідомлення
+                            або блокує користувача, залежно від налаштувань.
                         </p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span data-uk="Чи може бот помилитися?" data-en="Can the bot make mistakes?">Чи може бот помилитися?</span>
+                        <span data-uk="Чи може бот помилитися?" data-en="Can the bot make mistakes?">Чи може бот
+                            помилитися?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
                         <p data-uk="Так, як і будь-яка система штучного інтелекту, наш бот може іноді помилятися. Однак точність модерації становить понад 95%. Якщо бот випадково видалив важливе повідомлення, адміністратор чату може легко відновити його. Ми постійно вдосконалюємо алгоритми для зменшення кількості помилок."
                             data-en="Yes, like any artificial intelligence system, our bot can sometimes make mistakes. However, the moderation accuracy is over 95%. If the bot accidentally deleted an important message, the chat administrator can easily restore it. We are constantly improving algorithms to reduce the number of errors.">
-                            Так, як і будь-яка система штучного інтелекту, наш бот може іноді помилятися. Однак точність модерації становить понад 95%. Якщо бот випадково видалив важливе повідомлення, адміністратор чату може легко відновити його. Ми постійно вдосконалюємо алгоритми для зменшення кількості помилок.
+                            Так, як і будь-яка система штучного інтелекту, наш бот може іноді помилятися. Однак точність
+                            модерації становить понад 95%. Якщо бот випадково видалив важливе повідомлення,
+                            адміністратор чату може легко відновити його. Ми постійно вдосконалюємо алгоритми для
+                            зменшення кількості помилок.
                         </p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span data-uk="Що робити, якщо ліміт обробки повідомлень вичерпався раніше терміну?" data-en="What to do if the message processing limit is exhausted before the end of the period?">Що робити, якщо ліміт обробки повідомлень вичерпався раніше терміну?</span>
+                        <span data-uk="Що робити, якщо ліміт обробки повідомлень вичерпався раніше терміну?"
+                            data-en="What to do if the message processing limit is exhausted before the end of the period?">Що
+                            робити, якщо ліміт обробки повідомлень вичерпався раніше терміну?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
                         <p data-uk="Якщо ліміт обробки повідомлень вичерпався до закінчення 30-денного терміну, ви можете придбати додатковий пакет або оновити свій тарифний план. Бот автоматично повідомить вас про вичерпання ліміту і запропонує варіанти продовження."
                             data-en="If the message processing limit is exhausted before the end of the 30-day period, you can purchase an additional package or upgrade your tariff plan. The bot will automatically notify you about the limit exhaustion and offer options to continue.">
-                            Якщо ліміт обробки повідомлень вичерпався до закінчення 30-денного терміну, ви можете придбати додатковий пакет або оновити свій тарифний план. Бот автоматично повідомить вас про вичерпання ліміту і запропонує варіанти продовження.
+                            Якщо ліміт обробки повідомлень вичерпався до закінчення 30-денного терміну, ви можете
+                            придбати додатковий пакет або оновити свій тарифний план. Бот автоматично повідомить вас про
+                            вичерпання ліміту і запропонує варіанти продовження.
                         </p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <span data-uk="Чи безпечні мої дані?" data-en="Are my data safe?">Чи безпечні мої дані?</span>
@@ -1146,20 +1250,27 @@
                     <div class="faq-answer">
                         <p data-uk="Так, ми приділяємо велику увагу безпеці даних. Усі повідомлення аналізуються в зашифрованому вигляді і не зберігаються на наших серверах після обробки. Ми не збираємо особисту інформацію користувачів, окрім мінімально необхідної для надання послуг. Детальніше про нашу політику конфіденційності можна дізнатися у відповідному розділі."
                             data-en="Yes, we pay great attention to data security. All messages are analyzed in encrypted form and are not stored on our servers after processing. We do not collect personal information of users, except for the minimum necessary to provide services. More about our privacy policy can be found in the relevant section.">
-                            Так, ми приділяємо велику увагу безпеці даних. Усі повідомлення аналізуються в зашифрованому вигляді і не зберігаються на наших серверах після обробки. Ми не збираємо особисту інформацію користувачів, окрім мінімально необхідної для надання послуг. Детальніше про нашу політику конфіденційності можна дізнатися у відповідному розділі.
+                            Так, ми приділяємо велику увагу безпеці даних. Усі повідомлення аналізуються в зашифрованому
+                            вигляді і не зберігаються на наших серверах після обробки. Ми не збираємо особисту
+                            інформацію користувачів, окрім мінімально необхідної для надання послуг. Детальніше про нашу
+                            політику конфіденційності можна дізнатися у відповідному розділі.
                         </p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span data-uk="Чи можна налаштувати правила модерації під свій чат?" data-en="Can I customize moderation rules for my chat?">Чи можна налаштувати правила модерації під свій чат?</span>
+                        <span data-uk="Чи можна налаштувати правила модерації під свій чат?"
+                            data-en="Can I customize moderation rules for my chat?">Чи можна налаштувати правила
+                            модерації під свій чат?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
                         <p data-uk="Так, у тарифах Pro та Enterprise доступна функція кастомних правил. Ви можете налаштувати чутливість фільтрів, додати власні слова-тригери, встановити різні рівні реакції на порушення (від попередження до блокування) та інші параметри."
                             data-en="Yes, in Pro and Enterprise tariffs, the custom rules function is available. You can configure the sensitivity of filters, add your own trigger words, set different levels of response to violations (from warning to blocking) and other parameters.">
-                            Так, у тарифах Pro та Enterprise доступна функція кастомних правил. Ви можете налаштувати чутливість фільтрів, додати власні слова-тригери, встановити різні рівні реакції на порушення (від попередження до блокування) та інші параметри.
+                            Так, у тарифах Pro та Enterprise доступна функція кастомних правил. Ви можете налаштувати
+                            чутливість фільтрів, додати власні слова-тригери, встановити різні рівні реакції на
+                            порушення (від попередження до блокування) та інші параметри.
                         </p>
                     </div>
                 </div>
@@ -1169,25 +1280,28 @@
 
     <section class="cancellation" id="cancellation">
         <div class="container">
-            <h2 class="section-title" data-uk="Умови скасування підписки" data-en="Subscription Cancellation Terms">Умови скасування підписки</h2>
+            <h2 class="section-title" data-uk="Умови скасування підписки" data-en="Subscription Cancellation Terms">
+                Умови скасування підписки</h2>
             <div class="cancellation-content">
                 <p data-uk="Ми розуміємо, що обставини можуть змінитися, тому пропонуємо гнучкі умови скасування підписки:"
                     data-en="We understand that circumstances may change, so we offer flexible subscription cancellation terms:">
                     Ми розуміємо, що обставини можуть змінитися, тому пропонуємо гнучкі умови скасування підписки:
                 </p>
-                
+
                 <h3 data-uk="Право на скасування" data-en="Right to Cancellation">Право на скасування</h3>
                 <ul>
                     <li data-uk="Ви маєте право скасувати підписку протягом 14 днів з моменту активації, якщо не використовували послуги модерації."
                         data-en="You have the right to cancel the subscription within 14 days from activation if you have not used the moderation services.">
-                        Ви маєте право скасувати підписку протягом 14 днів з моменту активації, якщо не використовували послуги модерації.
+                        Ви маєте право скасувати підписку протягом 14 днів з моменту активації, якщо не використовували
+                        послуги модерації.
                     </li>
                     <li data-uk="Якщо ви вже використали послуги модерації, але не задоволені їх якістю, ви можете звернутися до служби підтримки для вирішення проблеми."
                         data-en="If you have already used the moderation services but are not satisfied with their quality, you can contact the support service to resolve the issue.">
-                        Якщо ви вже використали послуги модерації, але не задоволені їх якістю, ви можете звернутися до служби підтримки для вирішення проблеми.
+                        Якщо ви вже використали послуги модерації, але не задоволені їх якістю, ви можете звернутися до
+                        служби підтримки для вирішення проблеми.
                     </li>
                 </ul>
-                
+
                 <h3 data-uk="Процедура скасування" data-en="Cancellation Procedure">Процедура скасування</h3>
                 <ol>
                     <li data-uk="Зв'яжіться з нашою службою підтримки через Telegram бота або електронну пошту."
@@ -1207,7 +1321,7 @@
                         Після схвалення кошти будуть повернуті на вашу картку протягом 5-10 робочих днів.
                     </li>
                 </ol>
-                
+
                 <h3 data-uk="Винятки" data-en="Exceptions">Винятки</h3>
                 <p data-uk="Повернення коштів не здійснюється у таких випадках:"
                     data-en="Refunds are not made in the following cases:">
@@ -1239,7 +1353,8 @@
                         <h3 data-uk="Про сервіс" data-en="About Service">Про сервіс</h3>
                         <p data-uk="NSFW Chat Filter - професійний AI-модератор для захисту ваших Telegram-чатів від спаму та небажаного контенту."
                             data-en="NSFW Chat Filter - professional AI moderator to protect your Telegram chats from spam and unwanted content.">
-                            NSFW Chat Filter - професійний AI-модератор для захисту ваших Telegram-чатів від спаму та небажаного контенту.
+                            NSFW Chat Filter - професійний AI-модератор для захисту ваших Telegram-чатів від спаму та
+                            небажаного контенту.
                         </p>
                     </div>
 
@@ -1253,15 +1368,16 @@
                     <div class="footer-section">
                         <h3 data-uk="Інформація" data-en="Information">Інформація</h3>
                         <a href="/PrivacyPolicy" id="privacyLink">
-                            <i class="fas fa-shield-alt"></i> 
-                            <span data-uk="Політика конфіденційності" data-en="Privacy Policy">Політика конфіденційності</span>
+                            <i class="fas fa-shield-alt"></i>
+                            <span data-uk="Політика конфіденційності" data-en="Privacy Policy">Політика
+                                конфіденційності</span>
                         </a>
                         <a href="/TermsOfService" id="termsLink">
-                            <i class="fas fa-file-contract"></i> 
+                            <i class="fas fa-file-contract"></i>
                             <span data-uk="Договір оферти" data-en="Terms of Service">Договір оферти</span>
                         </a>
                         <a href="/RefundPolicy" id="refundLink">
-                            <i class="fas fa-undo"></i> 
+                            <i class="fas fa-undo"></i>
                             <span data-uk="Повернення коштів" data-en="Refund Policy">Повернення коштів</span>
                         </a>
                     </div>
@@ -1274,13 +1390,16 @@
                         </p>
                         <div class="payment-methods-list">
                             <div class="payment-method-item">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+                                    alt="Visa">
                             </div>
                             <div class="payment-method-item">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+                                    alt="Mastercard">
                             </div>
                             <div class="payment-method-item">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Prostir_logo.svg" alt="Простір">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Prostir_logo.svg"
+                                    alt="Простір">
                             </div>
                         </div>
                         <p data-uk="Оплата захищена технологією 3D-Secure"
@@ -1292,14 +1411,18 @@
 
                 <div class="company-info">
                     <h3 data-uk="Реквізити компанії" data-en="Company Details">Реквізити компанії</h3>
-                    <p><strong data-uk="Назва:" data-en="Name:">Назва:</strong> <span id="companyName">ФОП Іваненко Іван Іванович</span></p>
-                    <p><strong data-uk="ЄДРПОУ/ІПН:" data-en="Tax ID:">ЄДРПОУ/ІПН:</strong> <span id="companyTaxId">1234567890</span></p>
-                    <p><strong data-uk="Юридична адреса:" data-en="Legal Address:">Юридична адреса:</strong> <span id="companyLegalAddress">м. Київ, вул. Хрещатик, 1</span></p>
-                    <p><strong data-uk="Фактична адреса:" data-en="Actual Address:">Фактична адреса:</strong> <span id="companyActualAddress">м. Київ, вул. Хрещатик, 1</span></p>
+                    <p><strong data-uk="Назва:" data-en="Name:">Назва:</strong> <span id="companyName">ФОП Іваненко Іван
+                            Іванович</span></p>
+                    <p><strong data-uk="ЄДРПОУ/ІПН:" data-en="Tax ID:">ЄДРПОУ/ІПН:</strong> <span
+                            id="companyTaxId">1234567890</span></p>
+                    <p><strong data-uk="Юридична адреса:" data-en="Legal Address:">Юридична адреса:</strong> <span
+                            id="companyLegalAddress">м. Київ, вул. Хрещатик, 1</span></p>
+                    <p><strong data-uk="Фактична адреса:" data-en="Actual Address:">Фактична адреса:</strong> <span
+                            id="companyActualAddress">м. Київ, вул. Хрещатик, 1</span></p>
                 </div>
 
                 <div class="copyright">
-                    © 2025 NSFW Chat Filter. 
+                    © 2025 NSFW Chat Filter.
                     <span data-uk="Всі права захищені. Цей сайт використовує SSL-шифрування для захисту ваших даних."
                         data-en="All rights reserved. This site uses SSL encryption to protect your data.">
                         Всі права захищені. Цей сайт використовує SSL-шифрування для захисту ваших даних.
@@ -1344,13 +1467,13 @@
             question.addEventListener('click', () => {
                 const answer = question.nextElementSibling;
                 const isActive = question.classList.contains('active');
-                
+
                 // Close all other answers
                 document.querySelectorAll('.faq-question').forEach(q => {
                     q.classList.remove('active');
                     q.nextElementSibling.classList.remove('active');
                 });
-                
+
                 // Toggle current answer
                 if (!isActive) {
                     question.classList.add('active');
@@ -1379,6 +1502,10 @@
                 closeModal(e.target.id);
             }
         });
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
     </script>
 </body>
 
