@@ -1,4 +1,3 @@
-<script>
 function switchLang(lang) {
     document.querySelectorAll('[data-ua]').forEach(el => {
         el.style.display = lang === 'ua' ? 'block' : 'none';
@@ -19,4 +18,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const lang = localStorage.getItem('lang') || 'ua';
     switchLang(lang);
 });
-</script>
+
