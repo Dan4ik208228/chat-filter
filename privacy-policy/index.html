@@ -1,135 +1,290 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
     <meta charset="UTF-8">
     <title>Privacy Policy</title>
     <link rel="stylesheet" href="/assets/docs.css">
     <script src="/assets/lang.js" defer></script>
 </head>
+
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <header style="display:flex;justify-content:space-between;align-items:center;">
-        <a href="/">← На головну</a>
+        <header style="display:flex;justify-content:space-between;align-items:center;">
+            <a href="/">← На головну</a>
 
-        <div class="lang-switch">
-            <button id="ua" onclick="switchLang('ua')">UA</button>
-            <button id="en" onclick="switchLang('en')">EN</button>
+            <div class="lang-switch">
+                <button id="ua" onclick="switchLang('ua')">UA</button>
+                <button id="en" onclick="switchLang('en')">EN</button>
+            </div>
+        </header>
+
+        <!-- ================= UA ================= -->
+        <div data-ua>
+
+            <h2>ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ (UA)</h2>
+
+            <p><strong>Політика конфіденційності</strong></p>
+            <p><strong>Сервіс:</strong> [CHAT-FILTER / Назва сервісу] ("Сервіс")</p>
+            <p><strong>Власник/Виконавець:</strong> [Повна юридична назва ФОП/ТОВ], [ІПН/ЄДРПОУ: …] ("Компанія", "ми")
+            </p>
+            <p><strong>Адреса:</strong> [Юридична адреса], Україна</p>
+            <p><strong>Поштова адреса (для звернень):</strong> [якщо інша]</p>
+            <p><strong>E-mail підтримки:</strong> [support@…]</p>
+            <p><strong>Телефон:</strong> [+380…]</p>
+            <p><strong>Telegram підтримки:</strong> [@…]</p>
+            <p><strong>Дата набрання чинності:</strong> [DD Month YYYY]</p>
+            <p><strong>Останнє оновлення:</strong> [DD Month YYYY]</p>
+
+            <h2>1. Загальні положення</h2>
+            <p>Ця Політика конфіденційності описує, які персональні дані ми збираємо, як їх використовуємо, зберігаємо
+                та захищаємо, коли ви користуєтесь Сервісом (вебсайтом [https://chat-filter.com] та/або Telegram-ботом
+                [@…]) і/або здійснюєте оплату за підписку.</p>
+            <p>Користуючись Сервісом, ви підтверджуєте, що ознайомилися з цією Політикою та погоджуєтеся на обробку
+                даних у порядку, що тут описаний.</p>
+
+            <h2>2. Які дані ми збираємо</h2>
+            <p>Ми можемо збирати такі категорії даних:</p>
+            <ul>
+                <li><strong>Дані облікового запису та ідентифікації</strong>
+                    <ul>
+                        <li>Telegram user ID, username, ім'я профілю (якщо доступно), мова;</li>
+                        <li>ідентифікатори підписки/плану, статус (активна/неактивна), дата початку/закінчення.</li>
+                    </ul>
+                </li>
+                <li><strong>Дані використання Сервісу</strong>
+                    <ul>
+                        <li>технічні події (активація, лічильники використання лімітів, помилки, час відповіді);</li>
+                        <li>налаштування, конфігурації, токени доступу, якщо ви їх створюєте для інтеграції.</li>
+                    </ul>
+                </li>
+                <li><strong>Контент, який ви надсилаєте для роботи Сервісу (за потреби)</strong>
+                    <ul>
+                        <li>тексти/повідомлення, які Сервіс аналізує/фільтрує, і метадані, потрібні для виконання
+                            функції.</li>
+                        <li>Ми обробляємо такий контент лише настільки, наскільки це необхідно для надання Сервісу.</li>
+                    </ul>
+                </li>
+                <li><strong>Платіжна інформація (обмежено)</strong>
+                    <ul>
+                        <li>Оплата обробляється платіжним провайдером Portmone.</li>
+                        <li>Ми не зберігаємо повні реквізити банківської картки (номер, CVV).</li>
+                        <li>Ми можемо отримувати від Portmone лише службову інформацію: статус платежу, дату/час, суму,
+                            валюту, ідентифікатор транзакції, можливі частково масковані дані (наприклад, останні 4
+                            цифри картки, якщо провайдер це передає).</li>
+                    </ul>
+                </li>
+                <li><strong>Дані комунікації</strong>
+                    <ul>
+                        <li>звернення в підтримку (email/Telegram), зміст повідомлень, час звернення, технічні дані для
+                            діагностики.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>3. Для чого ми використовуємо дані (цілі)</h2>
+            <p>Ми обробляємо дані для:</p>
+            <ul>
+                <li>надання доступу до Сервісу та підтримки роботи функцій (включно з активацією підписки);</li>
+                <li>обробки платежів і ведення обліку оплат (на підставі статусів від Portmone);</li>
+                <li>підтримки користувачів, розгляду звернень і повернень;</li>
+                <li>покращення якості Сервісу, аналітики, безпеки та запобігання шахрайству;</li>
+                <li>виконання вимог законодавства (бухоблік/податки/запити уповноважених органів).</li>
+            </ul>
+
+            <h2>4. Правові підстави обробки</h2>
+            <p>Ми обробляємо дані на підставі:</p>
+            <ul>
+                <li>виконання договору (надання Сервісу та доступу до підписки);</li>
+                <li>вашої згоди (коли вона потрібна);</li>
+                <li>законного інтересу (забезпечення безпеки, запобігання зловживанням, покращення Сервісу);</li>
+                <li>виконання юридичних обов'язків (облік, звітність, відповіді на законні запити).</li>
+            </ul>
+
+            <h2>5. Платежі через Portmone</h2>
+            <p>Платежі здійснюються через платіжного провайдера Portmone. Обробка платіжних даних відбувається за
+                правилами Portmone та платіжних систем.</p>
+            <p>Якщо ви вмикаєте автопродовження (рекурентні платежі), Portmone/платіжна інфраструктура може
+                використовувати токенізацію картки для повторних списань згідно з умовами підписки (див. Terms of
+                Service).</p>
+
+            <h2>6. Кому ми передаємо дані</h2>
+            <p>Ми можемо передавати дані:</p>
+            <ul>
+                <li>Portmone — для обробки платежів і підтвердження статусів транзакцій;</li>
+                <li>технічним підрядникам (хостинг, аналітика, логування, e-mail) — лише в межах, необхідних для роботи
+                    Сервісу;</li>
+                <li>державним органам — якщо є законна вимога.</li>
+            </ul>
+            <p>Ми не продаємо персональні дані третім особам.</p>
+
+            <h2>7. Зберігання даних</h2>
+            <p>Ми зберігаємо дані стільки, скільки потрібно для надання Сервісу та виконання юридичних обов'язків, або
+                до моменту відкликання згоди/видалення (якщо застосовно), але з урахуванням вимог закону та необхідності
+                вирішення спорів.</p>
+
+            <h2>8. Захист даних</h2>
+            <p>Ми застосовуємо технічні та організаційні заходи безпеки (контроль доступу, шифрування там, де доречно,
+                журналювання, резервні копії). Жодна система не є на 100% безпечною, але ми робимо розумні кроки для
+                захисту даних.</p>
+
+            <h2>9. Права користувача</h2>
+            <p>Ви маєте право:</p>
+            <ul>
+                <li>отримати інформацію про обробку;</li>
+                <li>виправити неточні дані;</li>
+                <li>вимагати видалення/обмеження обробки (у межах законодавства);</li>
+                <li>відкликати згоду (якщо обробка базувалась на згоді);</li>
+                <li>подати скаргу до уповноваженого органу.</li>
+            </ul>
+            <p>Для реалізації прав звертайтеся: [support@…] або [@…].</p>
+
+            <h2>10. Дані дітей</h2>
+            <p>Сервіс не призначений для осіб молодше 18 років. Якщо вам стало відомо, що дитина надала нам дані,
+                повідомте нас — ми видалимо їх, якщо це можливо та не суперечить закону.</p>
+
+            <h2>11. Зміни до Політики</h2>
+            <p>Ми можемо оновлювати Політику. Актуальна версія завжди доступна за посиланням: [URL до сторінки
+                PrivacyPolicy]. Дата "Останнє оновлення" відображає зміни.</p>
+
+            <h2>12. Контакти Компанії</h2>
+            <p>[Повна юридична назва]</p>
+            <p>[ІПН/ЄДРПОУ]</p>
+            <p>Адреса: [ … ], Україна</p>
+            <p>E-mail: [support@…]</p>
+            <p>Телефон: [+380…]</p>
+            <p>Telegram: [@…]</p>
+
         </div>
-    </header>
 
-    <!-- ================= UA ================= -->
-    <div data-ua>
+        <!-- ================= EN ================= -->
+        <div data-en>
 
-        <h1>Політика конфіденційності</h1>
+            <h2>PRIVACY POLICY (EN)</h2>
 
-        <h2>1. Загальні положення</h2>
-        <p>
-            Цей сайт не збирає, не зберігає і не обробляє персональні дані
-            відвідувачів сайту. Ми не використовуємо файли cookie, трекери
-            або будь-які інші технології відстеження.
-        </p>
+            <p><strong>Privacy Policy</strong></p>
+            <p><strong>Service:</strong> [CHAT-FILTER / Service name] (the "Service")</p>
+            <p><strong>Owner/Provider:</strong> [Full legal name of Sole Proprietor/LLC], [Tax ID/Registration code: …]
+                ("Company", "we")</p>
+            <p><strong>Registered address:</strong> [Address], Ukraine</p>
+            <p><strong>Mailing address (if different):</strong> [ … ]</p>
+            <p><strong>Support email:</strong> [support@…]</p>
+            <p><strong>Phone:</strong> [+380…]</p>
+            <p><strong>Telegram support:</strong> [@…]</p>
+            <p><strong>Effective date:</strong> [DD Month YYYY]</p>
+            <p><strong>Last updated:</strong> [DD Month YYYY]</p>
 
-        <h2>2. Обробка даних через Telegram-бота</h2>
-        <p>
-            Вся взаємодія з сервісом здійснюється через Telegram-бота.
-            Бот може обробляти наступні дані:
-        </p>
-        <ul>
-            <li>ID користувача Telegram — для ідентифікації підписки</li>
-            <li>Повідомлення в чаті — виключно для цілей модерації (тимчасово, без збереження)</li>
-            <li>Налаштування модерації, обрані користувачем</li>
-        </ul>
+            <h2>1. Overview</h2>
+            <p>This Privacy Policy explains what personal data we collect, how we use, store, and protect it when you
+                use the Service (website [https://chat-filter.com] and/or Telegram bot [@…]) and/or pay for a
+                subscription.</p>
+            <p>By using the Service, you acknowledge and agree to this Policy.</p>
 
-        <h2>3. Платіжна інформація</h2>
-        <p>
-            Оплата послуг здійснюється через Portmone — сертифікований платіжний
-            шлюз з відповідністю стандарту PCI DSS.
-        </p>
-        <p>
-            Ми не зберігаємо та не обробляємо дані банківських карток.
-            Усі платіжні дані обробляються виключно на стороні Portmone
-            з використанням TLS-шифрування.
-        </p>
+            <h2>2. Data we collect</h2>
+            <p>We may collect:</p>
+            <ul>
+                <li><strong>Account identifiers</strong>
+                    <ul>
+                        <li>Telegram user ID, username, display name (if available), language;</li>
+                        <li>subscription plan identifiers, status, start/end dates.</li>
+                    </ul>
+                </li>
+                <li><strong>Usage data</strong>
+                    <ul>
+                        <li>activation events, usage counters/limits, errors, performance logs;</li>
+                        <li>settings/configurations and access tokens you generate for integrations.</li>
+                    </ul>
+                </li>
+                <li><strong>Content you submit for the Service to operate (where applicable)</strong>
+                    <ul>
+                        <li>messages/text processed by the Service and the minimum metadata required to deliver the
+                            functionality.</li>
+                    </ul>
+                </li>
+                <li><strong>Payment data (limited)</strong>
+                    <ul>
+                        <li>Payments are processed by Portmone. We do not store full card details (card number/CVV).
+                        </li>
+                        <li>We may receive payment status data such as transaction ID, date/time, amount, currency, and
+                            other limited technical details (possibly masked card data if provided by the payment
+                            processor).</li>
+                    </ul>
+                </li>
+                <li><strong>Support communications</strong>
+                    <ul>
+                        <li>emails/Telegram messages to support, timestamps, and diagnostic info.</li>
+                    </ul>
+                </li>
+            </ul>
 
-        <h2>4. Захист даних</h2>
-        <p>
-            Сайт використовує SSL-сертифікат (HTTPS) для захищеного з’єднання.
-            Всі дані передаються в зашифрованому вигляді.
-        </p>
+            <h2>3. How we use your data</h2>
+            <p>We use data to:</p>
+            <ul>
+                <li>provide and operate the Service, including subscription activation;</li>
+                <li>process payments and reconcile transactions (based on Portmone statuses);</li>
+                <li>provide customer support, handle refund requests;</li>
+                <li>improve Service quality, analytics, security and fraud prevention;</li>
+                <li>comply with legal and accounting obligations.</li>
+            </ul>
 
-        <h2>5. Зміни до політики</h2>
-        <p>
-            Ми залишаємо за собою право оновлювати цю Політику конфіденційності.
-            Зміни набувають чинності з моменту їх публікації на сайті.
-        </p>
+            <h2>4. Legal bases</h2>
+            <p>We process data based on:</p>
+            <ul>
+                <li>contract performance;</li>
+                <li>your consent (when required);</li>
+                <li>legitimate interests (security, abuse prevention, improvement);</li>
+                <li>legal obligations.</li>
+            </ul>
 
-        <h2>6. Контакти</h2>
-        <p>
-            Якщо у вас виникли питання щодо конфіденційності,
-            зв’яжіться з нами через Telegram-бота або електронну пошту.
-        </p>
+            <h2>5. Payments via Portmone</h2>
+            <p>Payments are processed by Portmone under its terms and the relevant card network rules.</p>
+            <p>If you enable auto-renewal (recurring payments), tokenization may be used to perform recurring charges as
+                described in the Terms of Service.</p>
+
+            <h2>6. Data sharing</h2>
+            <p>We may share data with:</p>
+            <ul>
+                <li>Portmone for payment processing and transaction confirmations;</li>
+                <li>infrastructure providers (hosting, logs, analytics, email) strictly as needed;</li>
+                <li>authorities where legally required.</li>
+            </ul>
+            <p>We do not sell personal data.</p>
+
+            <h2>7. Retention</h2>
+            <p>We retain data as long as necessary to provide the Service and meet legal obligations, or to resolve
+                disputes, and then delete or anonymize it where feasible.</p>
+
+            <h2>8. Security</h2>
+            <p>We apply reasonable technical and organizational safeguards (access control, encryption where
+                appropriate, logging, backups).</p>
+
+            <h2>9. Your rights</h2>
+            <p>You may request access, correction, deletion/limitation (where legally applicable), withdraw consent, and
+                lodge a complaint with an authority.</p>
+            <p>Contact: [support@…] or [@…].</p>
+
+            <h2>10. Children</h2>
+            <p>The Service is not intended for individuals under 18.</p>
+
+            <h2>11. Changes</h2>
+            <p>We may update this Policy. The latest version is available at: [Privacy Policy URL].</p>
+
+            <h2>12. Company details</h2>
+            <p>[Full legal name]</p>
+            <p>[Tax ID/Registration code]</p>
+            <p>Address: [ … ], Ukraine</p>
+            <p>Email: [support@…]</p>
+            <p>Phone: [+380…]</p>
+            <p>Telegram: [@…]</p>
+
+        </div>
+
+        <footer>© 2025 NSFW Chat Filter</footer>
 
     </div>
-
-    <!-- ================= EN ================= -->
-    <div data-en>
-
-        <h1>Privacy Policy</h1>
-
-        <h2>1. General Provisions</h2>
-        <p>
-            This website does not collect, store, or process any personal data
-            of website visitors. We do not use cookies, trackers, or any other
-            tracking technologies.
-        </p>
-
-        <h2>2. Data Processing via Telegram Bot</h2>
-        <p>
-            All interaction with the Service is carried out through a Telegram bot.
-            The bot may process the following data:
-        </p>
-        <ul>
-            <li>Telegram User ID — for subscription identification purposes</li>
-            <li>Chat messages — processed solely for moderation purposes (temporarily, not stored)</li>
-            <li>Moderation settings selected by the user</li>
-        </ul>
-
-        <h2>3. Payment Information</h2>
-        <p>
-            Payments are processed via Portmone, a certified payment gateway
-            compliant with the PCI DSS standard.
-        </p>
-        <p>
-            We do not store or process bank card details.
-            All payment data is processed exclusively by Portmone
-            using TLS encryption.
-        </p>
-
-        <h2>4. Data Security</h2>
-        <p>
-            The website uses an SSL certificate (HTTPS) to secure data transmission.
-            All data is transmitted in encrypted form.
-        </p>
-
-        <h2>5. Policy Updates</h2>
-        <p>
-            We reserve the right to update this Privacy Policy.
-            Any changes become effective from the moment they are published on the website.
-        </p>
-
-        <h2>6. Contact Information</h2>
-        <p>
-            If you have any questions regarding privacy,
-            please contact us via the Telegram bot or email.
-        </p>
-
-    </div>
-
-    <footer>© 2025 NSFW Chat Filter</footer>
-
-</div>
 
 </body>
+
 </html>

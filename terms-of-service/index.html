@@ -1,259 +1,268 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
     <meta charset="UTF-8">
     <title>Public Offer Agreement</title>
     <link rel="stylesheet" href="/assets/docs.css">
     <script src="/assets/lang.js" defer></script>
 </head>
+
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <header style="display:flex;justify-content:space-between;align-items:center;">
-        <a href="/">← На головну</a>
+        <header style="display:flex;justify-content:space-between;align-items:center;">
+            <a href="/">← На головну</a>
 
-        <div class="lang-switch">
-            <button id="ua" onclick="switchLang('ua')">UA</button>
-            <button id="en" onclick="switchLang('en')">EN</button>
+            <div class="lang-switch">
+                <button id="ua" onclick="switchLang('ua')">UA</button>
+                <button id="en" onclick="switchLang('en')">EN</button>
+            </div>
+        </header>
+
+        <!-- ================= UA ================= -->
+        <div data-ua>
+
+            <h2>ДОГОВІР ПУБЛІЧНОЇ ОФЕРТИ / TERMS OF SERVICE (UA)</h2>
+
+            <p><strong>Договір публічної оферти (Terms of Service)</strong></p>
+            <p><strong>Сервіс:</strong> [CHAT-FILTER / Назва]</p>
+            <p><strong>Виконавець:</strong> [Повна юридична назва], [ІПН/ЄДРПОУ: …]</p>
+            <p><strong>Адреса:</strong> [ … ], Україна</p>
+            <p><strong>Контакти:</strong> [support@…], [+380…], [@…]</p>
+            <p><strong>Дата набрання чинності:</strong> [DD Month YYYY]</p>
+            <p><strong>Останнє оновлення:</strong> [DD Month YYYY]</p>
+
+            <h2>1. Визначення</h2>
+            <ul>
+                <li><strong>Сервіс</strong> — програмний продукт/онлайн-сервіс та Telegram-бот, що надає функції
+                    [фільтрації/модерації/аналізу] повідомлень та інші функції, описані на сайті.</li>
+                <li><strong>Користувач</strong> — фізична особа або представник юридичної особи, що користується
+                    Сервісом.</li>
+                <li><strong>Підписка</strong> — платний доступ до функцій Сервісу на визначений строк.</li>
+                <li><strong>Тариф/План</strong> — набір умов (ціна, ліміти, функції), опублікований на сайті.</li>
+                <li><strong>Провайдер платежів</strong> — Portmone (платіжний провайдер, що обробляє оплати).</li>
+            </ul>
+
+            <h2>2. Предмет договору</h2>
+            <p>Виконавець надає Користувачу доступ до Сервісу відповідно до обраного Тарифу, а Користувач оплачує
+                Підписку на умовах цього Договору.</p>
+
+            <h2>3. Реєстрація та активація</h2>
+            <ul>
+                <li>3.1. Для використання Сервісу Користувач взаємодіє з Telegram-ботом та/або вебсайтом.</li>
+                <li>3.2. Надання послуги після оплати: після успішної оплати Користувач отримує код/ключ активації або
+                    підтвердження активації у боті/на сайті, після чого Підписка активується на строк, зазначений у
+                    Тарифі (як правило, 30 днів, якщо не зазначено інше).</li>
+            </ul>
+
+            <h2>4. Тарифи, ціни, валюта</h2>
+            <ul>
+                <li>4.1. Актуальні Тарифи та ціни опубліковані на сайті: [https://chat-filter.com].</li>
+                <li>4.2. Валюта розрахунків: UAH (гривня), якщо не зазначено інше.</li>
+                <li>4.3. Виконавець може змінювати Тарифи/ціни, публікуючи оновлення на сайті. Зміни не впливають на вже
+                    оплачені періоди, крім випадків, прямо передбачених законом або якщо Користувач погодився на зміну.
+                </li>
+            </ul>
+
+            <h2>5. Оплата та Portmone</h2>
+            <ul>
+                <li>5.1. Оплата здійснюється через Portmone (картки Visa/Mastercard та інші методи, доступні у
+                    Portmone).</li>
+                <li>5.2. Виконавець не зберігає повні реквізити карток.</li>
+                <li>5.3. Після оплати Користувач отримує підтвердження/квитанцію від Portmone та/або статус оплати в
+                    боті/кабінеті.</li>
+            </ul>
+
+            <h2>6. Автопродовження (рекурентні платежі) — ВАЖЛИВО</h2>
+            <p>Обрати один з двох режимів і залишити на сайті лише актуальний:</p>
+
+            <h3>ВАРІАНТ A (якщо у вас БУДЕ автосписання)</h3>
+            <ul>
+                <li>6.A.1. Якщо Користувач увімкнув автопродовження під час оплати/налаштування, він надає згоду на
+                    повторні списання вартості Підписки з періодичністю щомісяця (або інша періодичність — якщо прямо
+                    вказано в Тарифі).</li>
+                <li>6.A.2. Сума списання дорівнює актуальній вартості Тарифу на дату списання, якщо інше не зазначено.
+                </li>
+                <li>6.A.3. Списання здійснюються автоматично через Portmone (може використовуватись токенізація картки).
+                </li>
+                <li>6.A.4. Скасування автопродовження: Користувач може скасувати автопродовження в будь-який час через
+                    [бот-команду/кабінет] або звернувшись у підтримку: [support@…] / [@…].</li>
+                <li>6.A.5. Щоб уникнути списання за наступний період, скасування має бути виконано не пізніше ніж за 24
+                    години до дати наступного списання (або інший строк, якщо встановлено Portmone/банком).</li>
+            </ul>
+
+            <h3>ВАРІАНТ B (якщо автосписання НЕ буде; тільки ручне продовження)</h3>
+            <ul>
+                <li>6.B.1. Підписка не продовжується автоматично. Після завершення оплаченого періоду Користувач
+                    самостійно здійснює нову оплату для продовження.</li>
+            </ul>
+            <p>Порада для комплаєнсу: оберіть АБО A, АБО B і приберіть інший варіант, щоб не було двозначності.</p>
+
+            <h2>7. Правила користування та обмеження</h2>
+            <ul>
+                <li>7.1. Користувач зобов'язується використовувати Сервіс законно та не порушувати права третіх осіб.
+                </li>
+                <li>7.2. Заборонено:
+                    <ul>
+                        <li>використовувати Сервіс для незаконної діяльності, спаму, шахрайства;</li>
+                        <li>намагатися отримати несанкціонований доступ, зламувати або обходити обмеження;</li>
+                        <li>завантажувати шкідливий код.</li>
+                    </ul>
+                </li>
+                <li>7.3. Ліміти (запити/повідомлення/функції) визначаються Тарифом.</li>
+            </ul>
+
+            <h2>8. Повернення коштів</h2>
+            <p>Повернення коштів регулюється Політикою повернення коштів: [URL RefundPolicy], що є невід'ємною частиною
+                цього Договору.</p>
+
+            <h2>9. Інтелектуальна власність</h2>
+            <p>Сервіс, код, дизайн, торговельні марки та матеріали належать Виконавцю або правовласникам. Користувач
+                отримує невиключне право користування на строк підписки.</p>
+
+            <h2>10. Відмова від гарантій та обмеження відповідальності</h2>
+            <ul>
+                <li>10.1. Сервіс надається "як є". Ми не гарантуємо безперебійну роботу або відповідність очікуванням
+                    Користувача.</li>
+                <li>10.2. В межах, дозволених законом, Виконавець не несе відповідальності за непрямі збитки, втрату
+                    прибутку, даних тощо.</li>
+                <li>10.3. Сукупна відповідальність Виконавця за будь-якими вимогами обмежується сумою, сплаченою
+                    Користувачем за останній оплачений період, якщо інше не передбачено законом.</li>
+            </ul>
+
+            <h2>11. Припинення доступу</h2>
+            <p>Ми можемо призупинити або припинити доступ у разі порушення умов, підозри шахрайства або вимог закону.
+                Користувач може припинити користування в будь-який час.</p>
+
+            <h2>12. Застосовне право та спори</h2>
+            <p>Цей Договір регулюється правом України. Спори вирішуються шляхом переговорів, а за неможливості — у суді
+                за місцезнаходженням Виконавця, якщо інше не передбачено законом.</p>
+
+            <h2>13. Контакти та реквізити Виконавця</h2>
+            <p>[Повна юридична назва]</p>
+            <p>[ІПН/ЄДРПОУ]</p>
+            <p>Адреса: [ … ], Україна</p>
+            <p>E-mail: [support@…]</p>
+            <p>Телефон: [+380…]</p>
+            <p>Telegram: [@…]</p>
+
         </div>
-    </header>
 
-    <!-- ================= UA ================= -->
-    <div data-ua>
+        <!-- ================= EN ================= -->
+        <div data-en>
+            <h2>TERMS OF SERVICE (EN)</h2>
 
-        <h1>Договір публічної оферти</h1>
+            <p><strong>Terms of Service (Public Offer)</strong></p>
+            <p><strong>Service:</strong> [CHAT-FILTER / Name]</p>
+            <p><strong>Provider:</strong> [Full legal name], [Tax ID/Registration code: …]</p>
+            <p><strong>Address:</strong> [ … ], Ukraine</p>
+            <p><strong>Contacts:</strong> [support@…], [+380…], [@…]</p>
+            <p><strong>Effective date:</strong> [DD Month YYYY]</p>
+            <p><strong>Last updated:</strong> [DD Month YYYY]</p>
 
-        <h2>1. Загальні положення</h2>
-        <p>
-            Ця Політика повернення коштів є невід’ємною частиною
-            Договору публічної оферти (Terms of Service).
-        </p>
+            <h2>1. Definitions</h2>
+            <ul>
+                <li><strong>Service</strong> — the software service and Telegram bot providing
+                    [filtering/moderation/analysis] features as described on the website.</li>
+                <li><strong>User</strong> — an individual or an authorized representative of a legal entity using the
+                    Service.</li>
+                <li><strong>Subscription</strong> — paid access to the Service for a defined period.</li>
+                <li><strong>Plan</strong> — pricing/features/limits published on the website.</li>
+                <li><strong>Payment Provider</strong> — Portmone.</li>
+            </ul>
 
-        <h2>2. Предмет договору</h2>
-        <p>Виконавець надає Замовнику послуги AI-модерації Telegram-чатів, а саме:</p>
-        <ul>
-            <li>Автоматичний аналіз повідомлень на наявність спаму, образ та небажаного контенту</li>
-            <li>Видалення повідомлень, що порушують правила модерації</li>
-            <li>Блокування користувачів за порушення правил</li>
-            <li>Надання статистики та аналітики модерації</li>
-        </ul>
+            <h2>2. Scope</h2>
+            <p>We provide access to the Service under the selected Plan, and you pay the applicable Subscription fee
+                under these Terms.</p>
 
-        <h2>3. Порядок надання послуг</h2>
-        <h3>3.1. Активація послуги</h3>
-        <ul>
-            <li>Обрати тарифний план в Telegram-боті</li>
-            <li>Здійснити оплату через платіжний шлюз Portmone</li>
-            <li>Отримати код активації після успішної оплати</li>
-            <li>Додати бота до Telegram-чату з правами адміністратора</li>
-            <li>Ввести код активації для запуску модерації</li>
-        </ul>
+            <h2>3. Activation and service delivery</h2>
+            <p>After a successful payment, you receive an activation code/key or activation confirmation via the
+                bot/website, and your Subscription becomes active for the period stated in the Plan (typically 30 days,
+                unless stated otherwise).</p>
 
-        <h3>3.2. Термін дії послуги</h3>
-        <p>
-            Послуга надається протягом 30 календарних днів з моменту активації
-            АБО до повного використання ліміту обробки повідомлень.
-        </p>
+            <h2>4. Pricing and currency</h2>
+            <ul>
+                <li>Prices and Plans are published at [https://chat-filter.com].</li>
+                <li>Currency: UAH unless otherwise specified.</li>
+                <li>We may update pricing by publishing changes on the website; changes do not affect already paid
+                    periods unless required by law or agreed by you.</li>
+            </ul>
 
-        <h2>4. Вартість та оплата</h2>
-        <p>
-            Вартість послуг визначається тарифними планами.
-            Ціни вказані в гривнях (UAH) та включають всі податки.
-            Оплата здійснюється через Portmone з використанням 3D-Secure.
-        </p>
+            <h2>5. Payments via Portmone</h2>
+            <ul>
+                <li>Payments are processed via Portmone (Visa/Mastercard and other methods available in Portmone).</li>
+                <li>We do not store full card details.</li>
+                <li>You will receive a receipt/confirmation from Portmone and/or payment status in the Service.</li>
+            </ul>
 
-        <h2>5. Права та обов'язки сторін</h2>
-        <h3>5.1. Виконавець зобов’язується:</h3>
-        <ul>
-            <li>Надавати послуги відповідно до тарифу</li>
-            <li>Забезпечувати доступність сервісу 24/7 (крім технічних робіт)</li>
-            <li>Надавати технічну підтримку</li>
-            <li>Захищати дані Замовника</li>
-        </ul>
+            <h2>6. Auto-renewal (Recurring Payments) — IMPORTANT</h2>
+            <p>Choose one option and remove the other on your website:</p>
 
-        <h3>5.2. Замовник зобов’язується:</h3>
-        <ul>
-            <li>Надати боту права адміністратора</li>
-            <li>Використовувати сервіс законно</li>
-            <li>Не намагатися обійти систему модерації</li>
-            <li>Своєчасно оплачувати послуги</li>
-        </ul>
+            <h3>OPTION A (if you WILL use auto-renewal)</h3>
+            <ul>
+                <li>6.A.1. If you enable auto-renewal, you authorize recurring charges for your Subscription monthly (or
+                    other frequency if explicitly stated).</li>
+                <li>6.A.2. The charge amount equals the Plan price applicable on the charge date unless stated
+                    otherwise.</li>
+                <li>6.A.3. Charges are processed automatically via Portmone (card tokenization may be used).</li>
+                <li>6.A.4. Canceling auto-renewal: you can cancel anytime via [bot command/account] or by contacting
+                    support at [support@…] / [@…].</li>
+                <li>6.A.5. To avoid the next charge, cancel at least 24 hours before the next billing date (or as
+                    required by Portmone/banks).</li>
+            </ul>
 
-       <h2>6. Повернення коштів</h2>
-        <p>
-            Порядок, умови та випадки повернення коштів визначаються
-            <a href="/RefundPolicy">Політикою повернення коштів</a>,
-            яка є невід’ємною частиною цього Договору.
-        </p>
-        <p>
-            Замовник погоджується з тим, що повернення коштів здійснюється
-            виключно у випадках та порядку, передбачених Політикою повернення коштів.
-        </p>
+            <h3>OPTION B (if you will NOT use auto-renewal)</h3>
+            <ul>
+                <li>6.B.1. Subscriptions do not renew automatically. You must make a new payment to continue after the
+                    paid period ends.</li>
+            </ul>
 
-        <h2>7. Відповідальність сторін</h2>
-        <p>
-            Виконавець не несе відповідальності за помилки AI-модерації,
-            можливі збитки та форс-мажорні обставини.
-        </p>
+            <h2>7. Acceptable use</h2>
+            <p>You agree to use the Service lawfully and not to:</p>
+            <ul>
+                <li>engage in illegal activity, spam, fraud;</li>
+                <li>attempt unauthorized access or bypass limitations;</li>
+                <li>distribute malware or harmful code.</li>
+            </ul>
+            <p>Plan limits apply.</p>
 
-        <h2>8. Вирішення спорів</h2>
-        <p>
-            Спори вирішуються шляхом переговорів,
-            а у разі недосягнення згоди — згідно із законодавством України.
-        </p>
+            <h2>8. Refunds</h2>
+            <p>Refunds are governed by the Refund Policy: [Refund Policy URL], which forms part of these Terms.</p>
 
-        <h2>9. Термін дії договору</h2>
-        <p>
-            Договір набирає чинності з моменту активації послуг
-            та діє до повного виконання зобов’язань.
-        </p>
+            <h2>9. Intellectual property</h2>
+            <p>The Service, code, design, trademarks and materials are owned by us or licensors. You receive a limited,
+                non-exclusive right to use the Service during the Subscription period.</p>
 
-        <h2>10. Інші умови</h2>
-        <p>
-            Виконавець має право змінювати умови договору,
-            повідомивши Замовника не менш ніж за 7 днів.
-        </p>
-        <p>
-            У разі розбіжностей між умовами цього Договору та інших політик,
-            опублікованих на сайті, пріоритет має відповідна спеціальна політика.
-        </p>
+            <h2>10. Disclaimer and limitation of liability</h2>
+            <ul>
+                <li>The Service is provided "as is". We do not guarantee uninterrupted operation.</li>
+                <li>To the extent permitted by law, our total liability is limited to the amount you paid for your last
+                    paid period, unless otherwise required by law.</li>
+            </ul>
+
+            <h2>11. Termination</h2>
+            <p>We may suspend/terminate access for violations, suspected fraud, or legal requirements. You may stop
+                using the Service at any time.</p>
+
+            <h2>12. Governing law</h2>
+            <p>These Terms are governed by the laws of Ukraine. Disputes should first be resolved by negotiation;
+                otherwise — in court at the Provider's location unless mandatory law provides otherwise.</p>
+
+            <h2>13. Provider details</h2>
+            <p>[Full legal name]</p>
+            <p>[Tax ID/Registration code]</p>
+            <p>Address: [ … ], Ukraine</p>
+            <p>Email: [support@…]</p>
+            <p>Phone: [+380…]</p>
+            <p>Telegram: [@…]</p>
+        </div>
+
+        <footer>© 2025 NSFW Chat Filter</footer>
 
     </div>
 
-    <!-- ================= EN ================= -->
-  <div data-en>
-
-    <h1>Terms Of Service</h1>
-
-    <h2>1. General Provisions</h2>
-    <p>
-        This Refund Policy defines the conditions under which clients may
-        request a refund for AI-based moderation services for Telegram chats.
-    </p>
-    <p>
-        This Refund Policy forms an integral part of the Terms of Service.
-    </p>
-
-    <h2>2. Subject of the Agreement</h2>
-    <p>
-        The Service Provider provides the Client with AI moderation services for
-        Telegram chats, including:
-    </p>
-    <ul>
-        <li>Automatic analysis of messages for spam, offensive language, and prohibited content</li>
-        <li>Removal of messages that violate moderation rules</li>
-        <li>Blocking users who violate established rules</li>
-        <li>Provision of moderation statistics and analytical reports</li>
-    </ul>
-
-    <h2>3. Procedure for Providing Services</h2>
-
-    <h3>3.1. Service Activation</h3>
-    <p>
-        To receive the Services, the Client must:
-    </p>
-    <ul>
-        <li>Select a tariff plan in the Telegram bot</li>
-        <li>Make payment via the Portmone payment gateway</li>
-        <li>Receive an activation code after successful payment</li>
-        <li>Add the bot to the Telegram chat/channel with administrator rights</li>
-        <li>Enter the activation code to start moderation</li>
-    </ul>
-
-    <h3>3.2. Service Term</h3>
-    <p>
-        The Service is provided for 30 (thirty) calendar days from the moment of
-        activation OR until the purchased message processing limit is fully used,
-        whichever occurs first.
-    </p>
-
-    <h2>4. Service Fees and Payment Procedure</h2>
-    <p>
-        The cost of the Services is specified in the tariff plans available on the
-        website and in the Telegram bot. Prices are indicated in Ukrainian hryvnias
-        (UAH) and include all applicable taxes.
-    </p>
-    <p>
-        Payment is made using:
-    </p>
-    <ul>
-        <li>Bank cards (Visa, Mastercard, Prostir) via Portmone</li>
-        <li>3D-Secure technologies (Verified by Visa, Mastercard SecureCode)</li>
-    </ul>
-
-    <h2>5. Rights and Obligations of the Parties</h2>
-
-    <h3>5.1. The Service Provider undertakes to:</h3>
-    <ul>
-        <li>Provide Services in accordance with the selected tariff plan</li>
-        <li>Ensure availability of the bot 24/7, except during maintenance periods</li>
-        <li>Provide technical support via the Telegram bot</li>
-        <li>Protect the Client’s data in accordance with the Privacy Policy</li>
-    </ul>
-
-    <h3>5.2. The Client undertakes to:</h3>
-    <ul>
-        <li>Grant the bot the necessary administrator rights in the Telegram chat/channel</li>
-        <li>Use the Services exclusively for lawful purposes</li>
-        <li>Not attempt to bypass or interfere with the moderation system</li>
-        <li>Make timely payment for the Services</li>
-    </ul>
-
-    <h2>6. Refunds</h2>
-    <p>
-        The procedure, conditions, and cases for refunds are governed by the
-        <a href="/RefundPolicy">Refund Policy</a>,
-        which forms an integral part of this Agreement.
-    </p>
-    <p>
-        The Client agrees that refunds are issued solely in accordance
-        with the terms and conditions set forth in the Refund Policy.
-    </p>
-
-    <h2>7. Liability of the Parties</h2>
-    <p>
-        The Service Provider shall not be liable for:
-    </p>
-    <ul>
-        <li>Possible AI moderation errors (false positives or false negatives)</li>
-        <li>Any damages resulting from message deletion or user blocking in accordance
-            with the moderation settings</li>
-        <li>Service unavailability caused by force majeure circumstances</li>
-    </ul>
-
-    <h2>8. Dispute Resolution</h2>
-    <p>
-        All disputes arising out of or in connection with this Agreement shall be
-        resolved through negotiations. If no agreement is reached, the dispute shall
-        be resolved in court in accordance with the applicable laws of Ukraine.
-    </p>
-
-    <h2>9. Term of the Agreement</h2>
-    <p>
-        This Agreement enters into force from the moment the Client activates the
-        Services and remains valid until the Parties have fully fulfilled their
-        obligations.
-    </p>
-
-    <h2>10. Miscellaneous</h2>
-    <p>
-        The Service Provider reserves the right to amend the terms of service by
-        notifying the Client at least 7 (seven) days prior to the changes taking effect.
-    </p>
-   <p>
-        In case of any discrepancies between this Agreement and other policies
-        published on the website, the relevant specific policy shall prevail.
-    </p>
-
-</div>
-
-    <footer>© 2025 NSFW Chat Filter</footer>
-
-</div>
-
 </body>
+
 </html>
-
-
-
-
